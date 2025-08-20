@@ -1,0 +1,3961 @@
+\chapter{Introduction to the Course}
+
+\section{Course Overview}
+
+Welcome to \textbf{Master Python: From Basics to Advanced}!  
+This course is designed to take you on a complete journey through Python programming, starting from fundamental concepts and gradually progressing to advanced topics and real-world applications.
+
+Python is one of the most popular and versatile programming languages in the world. It is widely used in web development, data science, machine learning, artificial intelligence, automation, and more. Its simple syntax and readability make it an excellent choice for beginners, while its powerful libraries and frameworks make it suitable for advanced users.
+
+\section{Learning Objectives}
+
+By the end of this course, you will be able to:
+
+\begin{itemize}
+    \item Understand and write Python code using variables, data types, and operators.
+    \item Create and use functions, loops, and conditional statements effectively.
+    \item Work with Python data structures such as lists, tuples, sets, and dictionaries.
+    \item Apply object-oriented programming concepts, including classes, inheritance, and polymorphism.
+    \item Handle file operations and manage data efficiently.
+    \item Use Python for real-world applications, including web development, data analysis, and automation.
+    \item Explore advanced topics like error handling, decorators, generators, and Python libraries.
+\end{itemize}
+
+
+\section{Who This Course is For}
+
+This course is ideal for:
+
+\begin{itemize}
+    \item Beginners who want to start programming with Python.
+    \item Intermediate programmers looking to strengthen their Python skills.
+    \item Professionals aiming to apply Python in data science, AI, or web development.
+\end{itemize}
+
+\section{Expected Outcomes}
+
+By completing this course, you will:
+
+\begin{itemize}
+    \item Gain a strong foundation in Python programming.
+    \item Be capable of building small to medium-scale Python applications.
+    \item Be ready to explore specialized domains like AI, machine learning, or data analytics using Python.
+    \item Develop problem-solving and logical thinking skills essential for programming.
+\end{itemize}
+
+
+
+\chapter{Setting up Python Environment in VS Code}
+
+Hello everyone, and welcome to the Python series!  
+In this session, we will begin by setting up our Python environment in \textbf{VS Code}.
+
+\section{Why VS Code?}
+I find VS Code an amazing IDE because it supports:
+\begin{itemize}
+    \item Running both \texttt{.py} and Jupyter Notebook (\texttt{.ipynb}) files.
+    \item Easy creation and management of environments.
+    \item Extensions, code assistance, and many more productivity tools.
+\end{itemize}
+
+\section{Choosing the Python Version}
+For this series, I will use the newest Python version available at the time: \textbf{Python 3.12}.  
+We will explore features introduced from Python 3.10 to 3.12.
+
+\begin{noteBox}
+Always create a separate environment for each new project.  
+This prevents dependency conflicts and allows different projects to use different package versions.
+\end{noteBox}
+
+\section{Creating a New Environment with Conda}
+We will use the \texttt{conda} command to create our virtual environment.
+
+\begin{lstlisting}[language=bash, caption={Creating a Python 3.12 environment in Conda}]
+conda create -p venv python==3.12
+\end{lstlisting}
+
+Here:
+\begin{itemize}
+    \item \texttt{venv} is the environment name.
+    \item \texttt{python==3.12} specifies the version.
+\end{itemize}
+
+When prompted, press \texttt{Y} to proceed with installation.  
+Basic libraries will be installed automatically.
+
+\section{Activating the Environment}
+To activate the environment:
+\begin{lstlisting}[language=bash]
+conda activate venv
+\end{lstlisting}
+
+Once activated, you can run Python files directly:
+\begin{lstlisting}[language=bash]
+python app.py
+\end{lstlisting}
+
+\section{Working with Jupyter Notebooks in VS Code}
+1. Create a new folder (e.g., \texttt{Python\_Basics}).
+2. Inside, create a Jupyter Notebook file (\texttt{test.ipynb}).
+3. Select the kernel: choose the \texttt{venv} environment (Python 3.12).
+4. Create \textbf{Code} cells and \textbf{Markdown} cells as needed.
+
+\begin{noteBox}
+Execute a cell by pressing \texttt{Shift+Enter}.
+\end{noteBox}
+
+\subsection{Installing Required Packages}
+To run notebooks, you need \texttt{ipykernel}:
+\begin{lstlisting}[language=bash]
+pip install ipykernel
+\end{lstlisting}
+
+You can maintain a \texttt{requirements.txt} file to keep track of all packages:
+\begin{lstlisting}[language=Python]
+ipykernel
+pandas
+numpy
+# Add more as needed
+\end{lstlisting}
+
+\section{Conclusion}
+In this session, we learned:
+\begin{itemize}
+    \item How to create and activate a conda environment.
+    \item How to run Python scripts and notebooks in VS Code.
+    \item How to install necessary packages.
+\end{itemize}
+
+In the next chapter, we will start exploring Python basics.
+
+\chapter{Creating Python Environments for Your Projects}
+
+In this chapter, we will explore \textbf{three different ways} to create Python virtual environments for your projects.  
+Creating a separate environment for each project is important because:
+\begin{itemize}
+    \item Different projects often require different versions of dependencies.
+    \item It helps avoid package version conflicts.
+    \item It keeps your global Python installation clean.
+\end{itemize}
+
+\section{Method 1: Using \texttt{python -m venv}}
+This method requires only Python to be installed (no Anaconda).
+
+\begin{noteBox}
+If you want a specific Python version, install that version first from \href{https://www.python.org/downloads/}{python.org}.
+\end{noteBox}
+
+\subsection*{Steps}
+\begin{enumerate}
+    \item Open a terminal or command prompt.
+    \item Run:
+\begin{lstlisting}[language=bash, caption={Creating a virtual environment using venv}]
+python -m venv myenv
+\end{lstlisting}
+    \item Activate the environment:
+        \begin{itemize}
+            \item On Windows:
+\begin{lstlisting}[language=bash]
+myenv\Scripts\activate
+\end{lstlisting}
+            \item On macOS/Linux:
+\begin{lstlisting}[language=bash]
+source myenv/bin/activate
+\end{lstlisting}
+        \end{itemize}
+    \item Install packages:
+\begin{lstlisting}[language=bash]
+pip install pandas numpy
+\end{lstlisting}
+    \item Deactivate when done:
+\begin{lstlisting}[language=bash]
+deactivate
+\end{lstlisting}
+\end{enumerate}
+
+\section{Method 2: Using \texttt{virtualenv}}
+This method works across Windows, macOS, and Linux.
+
+\subsection*{Steps}
+\begin{enumerate}
+    \item Install \texttt{virtualenv}:
+\begin{lstlisting}[language=bash]
+pip install virtualenv
+\end{lstlisting}
+    \item Create the environment:
+\begin{lstlisting}[language=bash]
+virtualenv -p python3.10 venv_name
+\end{lstlisting}
+    \item Activate it (similar to Method 1):
+\begin{itemize}
+    \item Windows:
+\begin{lstlisting}[language=bash]
+venv_name\Scripts\activate
+\end{lstlisting}
+    \item macOS/Linux:
+\begin{lstlisting}[language=bash]
+source venv_name/bin/activate
+\end{lstlisting}
+\end{itemize}
+\end{enumerate}
+
+\section{Method 3: Using \texttt{conda create} (Recommended)}
+If you have \textbf{Anaconda} or \textbf{Miniconda} installed, this is often the most efficient method.
+
+\subsection*{Steps}
+\begin{enumerate}
+    \item Create the environment with a specific Python version:
+\begin{lstlisting}[language=bash]
+conda create -p venv_name python==3.10 -y
+\end{lstlisting}
+    \item Activate:
+\begin{lstlisting}[language=bash]
+conda activate venv_name
+\end{lstlisting}
+    \item Install packages:
+\begin{lstlisting}[language=bash]
+conda install pandas numpy
+\end{lstlisting}
+\end{enumerate}
+
+\begin{noteBox}
+Conda environments allow you to easily view installed packages and manage dependencies.
+\end{noteBox}
+
+\section{Conclusion}
+We covered:
+\begin{itemize}
+    \item \texttt{python -m venv} for a minimal setup.
+    \item \texttt{virtualenv} for cross-platform flexibility.
+    \item \texttt{conda create} for robust environment management.
+\end{itemize}
+Choose the method that best fits your workflow.
+
+\chapter{Python Syntax and Semantics}
+
+Welcome to the next session of our Python series.  
+In this chapter, we will cover:
+
+\begin{itemize}
+    \item Single-line and multi-line comments
+    \item Definitions of \textbf{syntax} and \textbf{semantics}
+    \item Basic syntax rules in Python
+    \item Variable assignment, type inference, and dynamic typing
+    \item Indentation rules and common syntax errors
+    \item Practical code examples
+\end{itemize}
+
+\section{Comments in Python}
+
+Python supports both single-line and multi-line comments.
+
+\subsection{Single-line Comments}
+
+Single-line comments begin with a hash symbol \texttt{\#}:
+
+\begin{lstlisting}[language=Python, caption={Single-line comment}]
+# This is a single-line comment
+print("Hello World")  # Inline comment
+\end{lstlisting}
+
+\subsection{Multi-line Comments}
+
+Multi-line comments use triple quotes (\texttt{""" ... """}) in Python scripts:
+
+\begin{lstlisting}[language=Python, caption={Multi-line comment}]
+"""
+Welcome to the Python course.
+This is a multi-line comment.
+"""
+\end{lstlisting}
+
+\textbf{Note:} Multi-line comments may not work in Jupyter notebooks; single-line comments are always safe.
+
+\section{Syntax vs Semantics}
+
+\subsection{Syntax}
+
+Syntax refers to the rules that define the structure of valid Python programs.  
+It is about the correct arrangement of symbols and keywords.
+
+\subsection{Semantics}
+
+Semantics is the meaning or interpretation of code: what the program does when executed.  
+Syntax is \emph{how} you write the code, semantics is \emph{what} it does.
+
+\section{Basic Syntax Rules}
+
+\subsection{Case Sensitivity}
+
+Python is case-sensitive. Variables with different capitalization are treated as distinct:
+
+\begin{lstlisting}[language=Python, caption={Case sensitivity example}]
+name = "Chris"
+Name = "Nick"
+
+print(name)  # Outputs: Chris
+print(Name)  # Outputs: Nick
+\end{lstlisting}
+
+\subsection{Indentation}
+
+Python uses indentation instead of braces to define code blocks.  
+Consistent use of spaces (commonly four) or tabs is required:
+
+\begin{lstlisting}[language=Python, caption={Indentation example}]
+age = 32
+if age > 30:
+    print("Age is greater than 30")  # Indented block
+print("This prints regardless of the if condition")  # Outside block
+\end{lstlisting}
+
+\subsection{Line Continuation}
+
+Use a backslash (\texttt{\textbackslash}) to continue a long statement on the next line:
+
+\begin{lstlisting}[language=Python, caption={Line continuation example}]
+total = 1 + 2 + 3 + \
+        4 + 5 + 6
+print(total)  # Outputs: 21
+\end{lstlisting}
+
+\subsection{Multiple Statements in a Single Line}
+
+Separate statements with a semicolon (\texttt{;}):
+
+\begin{lstlisting}[language=Python, caption={Multiple statements in one line}]
+x = 5; y = 10; z = x + y
+print(z)  # Outputs: 15
+\end{lstlisting}
+
+\section{Variables and Type Inference}
+
+Python infers the type of a variable dynamically at runtime:
+
+\begin{lstlisting}[language=Python, caption={Type inference example}]
+age = 32          # integer
+name = "Chris"    # string
+
+print(type(age))   # <class 'int'>
+print(type(name))  # <class 'str'>
+
+variable = 10
+print(type(variable))  # int
+variable = "Chris"
+print(type(variable))  # str
+\end{lstlisting}
+
+\section{Common Syntax Errors}
+
+\subsection{Name Errors}
+
+Using an undefined variable:
+
+\begin{lstlisting}[language=Python, caption={Name error example}]
+a = B  # NameError: name 'B' is not defined
+\end{lstlisting}
+
+\subsection{Indentation Errors}
+
+Incorrect indentation:
+
+\begin{lstlisting}[language=Python, caption={Indentation error example}]
+age = 32
+if age > 30:
+print(age)  # IndentationError
+\end{lstlisting}
+
+\section{Practical Example: Nested Indentation}
+
+\begin{lstlisting}[language=Python, caption={Nested indentation example}]
+if True:
+    print("Inside True block")
+    if False:
+        print("Inside nested False block")
+print("Outside all blocks")
+\end{lstlisting}
+
+This prints twice: once for the True block and once for the statement outside all blocks.
+
+\section{Summary}
+
+In this chapter, we covered:
+
+\begin{itemize}
+    \item Single-line and multi-line comments
+    \item Difference between syntax and semantics
+    \item Case sensitivity, indentation, line continuation, and multiple statements
+    \item Variables, type inference, and dynamic typing
+    \item Common syntax and indentation errors
+\end{itemize}
+
+In the next chapter, we will explore variables, data types, and operators in Python.
+
+
+\chapter{Introduction to Variables in Python}
+
+\section{Overview}
+
+Variables are fundamental elements in programming used to store data that can be referenced and manipulated in a program.  
+In Python, variables are created when you assign a value to them; explicit declaration is not required.
+
+\section{What is a Variable?}
+
+Variables are fundamental elements in programming used to store data that can be referenced and manipulated in a program.  
+In Python, variables are created when you assign a value to them. There is no need for explicit declaration or memory reservation; Python handles this automatically.
+
+\begin{lstlisting}[language=Python]
+a = 100
+\end{lstlisting}
+
+This statement creates a variable \texttt{a} and assigns it the value \texttt{100}.
+
+\section{Declaring and Assigning Variables}
+
+Variables are declared and assigned using the assignment operator \texttt{=}.  
+You can assign values of any type:
+
+\begin{lstlisting}[language=Python]
+age = 32
+height = 6.1
+name = "John"
+is_student = True
+\end{lstlisting}
+
+You can print variables using the \texttt{print()} function:
+
+\begin{lstlisting}[language=Python]
+print("Age:", age)
+print("Height:", height)
+print("Name:", name)
+print("Is Student:", is_student)
+\end{lstlisting}
+
+\section{Naming Conventions}
+
+Proper naming conventions help make code readable and maintainable.  
+Important rules:
+\begin{itemize}
+    \item Variable names should be descriptive.
+    \item Must start with a letter or underscore (\_).
+    \item Can contain letters, numbers, and underscores.
+    \item Cannot start with a number.
+    \item Variable names are case sensitive.
+\end{itemize}
+
+\textbf{Valid variable names:}
+\begin{lstlisting}[language=Python]
+first_name = "John"
+last_name = "Nick"
+score1 = 100
+_is_valid = True
+\end{lstlisting}
+
+\textbf{Invalid variable names:}
+\begin{lstlisting}[language=Python]
+1age = 30           # Invalid: starts with a number
+first-name = "John" # Invalid: dash not allowed
+@name = "John"      # Invalid: special character not allowed
+\end{lstlisting}
+
+\textbf{Case Sensitivity:}
+\begin{lstlisting}[language=Python]
+name = "Chris"
+Name = "Naic"
+print(name == Name) # False, different variables
+\end{lstlisting}
+
+\section{Variable Types and Dynamic Typing}
+
+Python is dynamically typed, meaning the type of a variable is determined at runtime.  
+Common types include \texttt{int}, \texttt{float}, \texttt{str}, and \texttt{bool}.
+
+\begin{lstlisting}[language=Python]
+age = 25          # int
+height = 6.1      # float
+name = "John"    # str
+is_student = True # bool
+\end{lstlisting}
+
+You can check the type using \texttt{type()}:
+
+\begin{lstlisting}[language=Python]
+print(type(age))      # <class 'int'>
+print(type(height))   # <class 'float'>
+print(type(name))     # <class 'str'>
+print(type(is_student)) # <class 'bool'>
+\end{lstlisting}
+
+\section{Type Checking and Conversion}
+
+Type checking helps you understand what type of data a variable holds.  
+Type conversion allows you to change the type of a variable.
+
+\textbf{Convert int to str:}
+\begin{lstlisting}[language=Python]
+age = 25
+age_str = str(age)
+print(age_str, type(age_str)) # '25' <class 'str'>
+\end{lstlisting}
+
+\textbf{Convert str to int:}
+\begin{lstlisting}[language=Python]
+age = "25"
+age_int = int(age)
+print(age_int, type(age_int)) # 25 <class 'int'>
+\end{lstlisting}
+
+\textbf{Convert float to int and vice versa:}
+\begin{lstlisting}[language=Python]
+height = 5.11
+height_int = int(height)      # 5
+height_float = float(height_int) # 5.0
+print(height_int, type(height_int))
+print(height_float, type(height_float))
+\end{lstlisting}
+
+\textbf{Invalid conversions:}
+\begin{lstlisting}[language=Python]
+name = "John"
+int(name) # Raises ValueError
+\end{lstlisting}
+
+\section{Dynamic Typing in Python}
+
+Python allows the type of a variable to change as the program executes:
+
+\begin{lstlisting}[language=Python]
+var = 10
+print(var, type(var))     # 10 <class 'int'>
+var = "Hello"
+print(var, type(var))     # Hello <class 'str'>
+var = 3.14
+print(var, type(var))     # 3.14 <class 'float'>
+\end{lstlisting}
+
+This flexibility is called dynamic typing.
+
+\section{User Input and Typecasting}
+
+Use the \texttt{input()} function to get user input.  
+Input is always received as a string, so type conversion may be needed.
+
+\begin{lstlisting}[language=Python]
+age = input("Enter your age: ")
+print(age, type(age))     # age is str
+
+age_int = int(age)
+print(age_int, type(age_int)) # age_int is int
+\end{lstlisting}
+
+\section{Practical Example: Simple Calculator}
+
+A simple calculator using variables and input:
+
+\begin{lstlisting}[language=Python]
+num1 = int(input("Enter first number: "))
+num2 = int(input("Enter second number: "))
+
+print("Sum:", num1 + num2)
+print("Difference:", num1 - num2)
+print("Product:", num1 * num2)
+print("Quotient:", num1 / num2)
+\end{lstlisting}
+
+\section{Common Errors}
+
+\begin{itemize}
+    \item Using invalid variable names (e.g., starting with a number or using special characters).
+    \item Type conversion errors (e.g., converting a non-numeric string to int).
+    \item Forgetting that input() returns a string and not converting to int or float.
+    \item Case sensitivity mistakes (e.g., using \texttt{name} and \texttt{Name} interchangeably).
+\end{itemize}
+
+\section{Summary}
+
+\begin{itemize}
+    \item Variables store data and are dynamically typed in Python.
+    \item Naming conventions help avoid errors and improve readability.
+    \item Type checking and conversion are straightforward.
+    \item Input from users is always a string and may need conversion.
+    \item Python allows variable types to change during execution.
+    \item Practical examples help reinforce concepts and highlight common errors.
+\end{itemize}
+
+
+\chapter{Python Data Types}
+
+\section{Overview and Outline}
+
+In this chapter, we will cover:
+\begin{itemize}
+    \item Introduction to data types
+    \item Importance of data types in programming
+    \item Basic data types: integer, float, string, boolean
+    \item Common errors and type conversion
+    \item Preview of advanced data types (lists, tuples, sets, dictionaries)
+    \item Practical examples
+\end{itemize}
+
+\section{Introduction to Data Types}
+
+Data types are a classification of data which tells the compiler or interpreter how the programmer intends to use the data.  
+They determine:
+\begin{itemize}
+    \item The type of operations that can be performed
+    \item The values the data can take
+    \item The amount of memory needed to store the data
+\end{itemize}
+
+Different data types (e.g., integer, float) require different amounts of memory.  
+Proper use of data types ensures efficient storage, correct operations, and helps prevent errors and bugs.
+
+\section{Basic Data Types in Python}
+
+\subsection{Integer}
+
+Stores whole numbers.
+
+\begin{lstlisting}[language=Python]
+age = 35
+print(type(age))  # <class 'int'>
+\end{lstlisting}
+
+\subsection{Float}
+
+Stores decimal numbers.
+
+\begin{lstlisting}[language=Python]
+height = 5.11
+print(height)         # 5.11
+print(type(height))   # <class 'float'>
+\end{lstlisting}
+
+\subsection{String}
+
+Stores sequences of characters.
+
+\begin{lstlisting}[language=Python]
+name = "John"
+print(name)           # John
+print(type(name))     # <class 'str'>
+\end{lstlisting}
+
+\subsection{Boolean}
+
+Stores True or False values.
+
+\begin{lstlisting}[language=Python]
+is_true = True
+print(type(is_true))  # <class 'bool'>
+
+a = 10
+b = 10
+print(a == b)         # True
+print(type(a == b))   # <class 'bool'>
+\end{lstlisting}
+
+\section{Common Errors and Type Conversion}
+
+\subsection{Type Error Example}
+
+Trying to add a string and an integer:
+
+\begin{lstlisting}[language=Python]
+result = "hello" + 5  # TypeError: can only concatenate str (not "int") to str
+\end{lstlisting}
+
+\textbf{Fix:} Use typecasting.
+
+\begin{lstlisting}[language=Python]
+result = "hello" + str(5)
+print(result)         # hello5
+\end{lstlisting}
+
+\subsection{Type Conversion Examples}
+
+\begin{lstlisting}[language=Python]
+# String to int
+num_str = "25"
+num_int = int(num_str)
+print(num_int, type(num_int))  # 25 <class 'int'>
+
+# Float to int
+height = 5.11
+height_int = int(height)
+print(height_int, type(height_int))  # 5 <class 'int'>
+
+# Int to float
+score = 100
+score_float = float(score)
+print(score_float, type(score_float))  # 100.0 <class 'float'>
+\end{lstlisting}
+
+\subsection{Invalid Conversion Example}
+
+\begin{lstlisting}[language=Python]
+name = "John"
+int(name)  # ValueError: invalid literal for int() with base 10: 'John'
+\end{lstlisting}
+
+\section{String Methods Preview}
+
+Strings have many built-in methods:
+
+\begin{lstlisting}[language=Python]
+text = "hello"
+print(text.upper())      # HELLO
+print(text.isalpha())    # True
+print(text.center(10))   # '  hello   '
+\end{lstlisting}
+
+We will explore more string methods and operations in later chapters.
+
+\section{Advanced Data Types (Preview)}
+
+Python also supports advanced data types:
+\begin{itemize}
+    \item Lists
+    \item Tuples
+    \item Sets
+    \item Dictionaries
+\end{itemize}
+These will be covered in detail in future chapters.
+
+\section{Summary}
+
+\begin{itemize}
+    \item Data types classify and manage data efficiently in Python.
+    \item Basic types: int, float, str, bool.
+    \item Type conversion and type errors are common; typecasting helps fix them.
+    \item Strings have many useful methods.
+    \item Advanced data types will be covered later.
+\end{itemize}
+
+\chapter{Python Operators}
+
+\section{Overview and Outline}
+
+In this chapter, we will cover:
+\begin{itemize}
+    \item Introduction to operators
+    \item Arithmetic operators: addition, subtraction, multiplication, division, floor division, modulus, exponentiation
+    \item Comparison operators: equal to, not equal to, greater than, less than, greater than or equal to, less than or equal to
+    \item Logical operators: and, or, not
+    \item Practical examples and common errors
+    \item Simple calculator project
+\end{itemize}
+
+\section{Introduction to Operators}
+
+Operators are symbols that perform mathematical, logical, or comparison operations on values and variables.  
+They are essential for building logic and performing calculations in Python programs.
+
+\section{Arithmetic Operators}
+
+\begin{lstlisting}[language=Python]
+a = 10
+b = 5
+
+add_result = a + b           # Addition
+sub_result = a - b           # Subtraction
+mul_result = a * b           # Multiplication
+div_result = a / b           # Division (float result)
+floor_div_result = a // b    # Floor Division (integer result)
+mod_result = a % b           # Modulus (remainder)
+exp_result = a ** b          # Exponentiation (a to the power of b)
+
+print("Addition:", add_result)
+print("Subtraction:", sub_result)
+print("Multiplication:", mul_result)
+print("Division:", div_result)
+print("Floor Division:", floor_div_result)
+print("Modulus:", mod_result)
+print("Exponentiation:", exp_result)
+\end{lstlisting}
+
+\textbf{Notes:}
+\begin{itemize}
+    \item Division (\texttt{/}) returns a float.
+    \item Floor division (\texttt{//}) returns the largest integer less than or equal to the result.
+    \item Modulus (\texttt{\%}) returns the remainder.
+    \item Exponentiation (\texttt{**}) raises the first operand to the power of the second.
+\end{itemize}
+
+\section{Comparison Operators}
+
+\begin{lstlisting}[language=Python]
+a = 10
+b = 15
+
+print(a == b)    # Equal to
+print(a != b)    # Not equal to
+print(a > b)     # Greater than
+print(a < b)     # Less than
+print(a >= b)    # Greater than or equal to
+print(a <= b)    # Less than or equal to
+
+# String comparison (case sensitive)
+str1 = "John"
+str2 = "John"
+print(str1 == str2)  # True
+
+str3 = "john"
+print(str1 == str3)  # False
+\end{lstlisting}
+
+\section{Logical Operators}
+
+\begin{lstlisting}[language=Python]
+x = True
+y = False
+
+print(x and y)   # AND: True only if both are True
+print(x or y)    # OR: True if at least one is True
+print(not x)     # NOT: Inverts the boolean value
+\end{lstlisting}
+
+\textbf{Truth Table:}
+\begin{itemize}
+    \item \texttt{and}: True only if both operands are True.
+    \item \texttt{or}: True if at least one operand is True.
+    \item \texttt{not}: Inverts the operand.
+\end{itemize}
+
+\section{Practical Example: Simple Calculator}
+
+\begin{lstlisting}[language=Python]
+num1 = float(input("Enter first number: "))
+num2 = float(input("Enter second number: "))
+
+print("Addition:", num1 + num2)
+print("Subtraction:", num1 - num2)
+print("Multiplication:", num1 * num2)
+print("Division:", num1 / num2)
+print("Floor Division:", num1 // num2)
+print("Modulus:", num1 % num2)
+print("Exponentiation:", num1 ** num2)
+\end{lstlisting}
+
+\section{Summary}
+
+\begin{itemize}
+    \item Operators are used for arithmetic, comparison, and logical operations in Python.
+    \item Arithmetic operators include: \texttt{+}, \texttt{-}, \texttt{*}, \texttt{/}, \texttt{//}, \texttt{\%}, \texttt{**}.
+    \item Comparison operators include: \texttt{==}, \texttt{!=}, \texttt{>}, \texttt{<}, \texttt{>=}, \texttt{<=}.
+    \item Logical operators include: \texttt{and}, \texttt{or}, \texttt{not}.
+    \item Practical examples help reinforce concepts and highlight common errors.
+\end{itemize}
+
+\chapter{Python Control Flow: Conditional Statements}
+
+\section{Overview and Outline}
+
+In this chapter, we will cover:
+\begin{itemize}
+    \item Introduction to conditional statements
+    \item The \texttt{if} statement
+    \item The \texttt{else} statement
+    \item The \texttt{elif} statement
+    \item Nested conditional statements
+    \item Practical examples and real-world use cases
+    \item Common errors and best practices
+    \item Assignments for practice
+\end{itemize}
+
+\section{Introduction to Conditional Statements}
+
+Conditional statements allow you to control the flow of your program based on conditions.  
+They help you execute certain blocks of code only when specific conditions are met.
+
+\section{The \texttt{if} Statement}
+
+The \texttt{if} statement evaluates a condition and executes the block of code within it if the condition is true.
+
+\begin{lstlisting}[language=Python]
+age = 20
+if age >= 18:
+    print("You are allowed to vote in the elections.")
+\end{lstlisting}
+
+\section{The \texttt{else} Statement}
+
+The \texttt{else} statement executes a block of code if the condition in the \texttt{if} statement is false.
+
+\begin{lstlisting}[language=Python]
+age = 16
+if age >= 18:
+    print("You are eligible for voting.")
+else:
+    print("You are a minor.")
+\end{lstlisting}
+
+\section{The \texttt{elif} Statement}
+
+The \texttt{elif} (else if) statement allows you to check multiple conditions.
+
+\begin{lstlisting}[language=Python]
+age = 20
+if age < 13:
+    print("You are a child.")
+elif age < 18:
+    print("You are a teenager.")
+else:
+    print("You are an adult.")
+\end{lstlisting}
+
+\section{Nested Conditional Statements}
+
+You can place one or more \texttt{if}, \texttt{elif}, or \texttt{else} statements inside another conditional block.
+
+\begin{lstlisting}[language=Python]
+number = int(input("Enter the number: "))
+if number > 0:
+    print("The number is positive.")
+    if number % 2 == 0:
+        print("The number is even.")
+    else:
+        print("The number is odd.")
+else:
+    print("The number is zero or negative.")
+\end{lstlisting}
+
+\section{Practical Example: Leap Year Checker}
+
+A year is a leap year if it is divisible by 4, but not by 100 unless it is also divisible by 400.
+
+\begin{lstlisting}[language=Python]
+year = int(input("Enter the year: "))
+if year % 4 == 0:
+    if year % 100 == 0:
+        if year % 400 == 0:
+            print(f"{year} is a leap year.")
+        else:
+            print(f"{year} is not a leap year.")
+    else:
+        print(f"{year} is a leap year.")
+else:
+    print(f"{year} is not a leap year.")
+\end{lstlisting}
+
+\section{Common Errors and Best Practices}
+
+\begin{itemize}
+    \item Always use a colon (\texttt{:}) after \texttt{if}, \texttt{elif}, and \texttt{else}.
+    \item Maintain proper indentation for code blocks.
+    \item Use descriptive variable names and clear conditions.
+    \item Test your code with different inputs to ensure all branches work.
+\end{itemize}
+
+\section{Assignment: Simple Calculator}
+
+Write a program that takes two numbers and an operation (+, -, *, /, %, **) from the user and performs the operation using conditional statements.
+
+\begin{lstlisting}[language=Python]
+num1 = float(input("Enter first number: "))
+num2 = float(input("Enter second number: "))
+operation = input("Enter operation (+, -, *, /, %, **): ")
+
+if operation == "+":
+    result = num1 + num2
+elif operation == "-":
+    result = num1 - num2
+elif operation == "*":
+    result = num1 * num2
+elif operation == "/":
+    result = num1 / num2
+elif operation == "%":
+    result = num1 % num2
+elif operation == "**":
+    result = num1 ** num2
+else:
+    result = "Invalid operation"
+
+print("Result:", result)
+\end{lstlisting}
+
+\section{Assignment: Ticket Price Based on Age}
+
+Write a program to determine ticket price based on age and student status.
+
+\begin{lstlisting}[language=Python]
+age = int(input("Enter your age: "))
+is_student = input("Are you a student? (yes/no): ").lower()
+
+if age < 5:
+    price = 0
+elif age < 12:
+    price = 10
+elif age < 17:
+    if is_student == "yes":
+        price = 12
+    else:
+        price = 15
+else:
+    price = 20
+
+print(f"Your ticket price is: ${price}")
+\end{lstlisting}
+
+\section{Summary}
+
+\begin{itemize}
+    \item Conditional statements control the flow of your program.
+    \item Use \texttt{if}, \texttt{elif}, and \texttt{else} for decision making.
+    \item Nested conditionals allow complex logic.
+    \item Practice with real-world examples to master control flow.
+\end{itemize}
+
+\chapter{Python Loops}
+
+\section{Overview and Outline}
+
+In this chapter, we will cover:
+\begin{itemize}
+    \item Introduction to loops
+    \item For loop and the \texttt{range()} function
+    \item While loop
+    \item Loop control statements: \texttt{break}, \texttt{continue}, \texttt{pass}
+    \item Nested loops
+    \item Practical examples
+    \item Common errors and best practices
+\end{itemize}
+
+\section{Introduction to Loops}
+
+Loops allow you to execute a block of code multiple times.  
+Python supports two main types of loops: \texttt{for} loops and \texttt{while} loops.
+
+\section{For Loop and Range Function}
+
+The \texttt{for} loop is used to iterate over a sequence (such as a list, string, or range of numbers).
+
+\begin{lstlisting}[language=Python]
+for i in range(5):
+    print(i)
+# Output: 0 1 2 3 4
+\end{lstlisting}
+
+\texttt{range(start, stop, step)} generates a sequence of numbers:
+\begin{lstlisting}[language=Python]
+for i in range(1, 6):
+    print(i)
+# Output: 1 2 3 4 5
+
+for i in range(1, 10, 2):
+    print(i)
+# Output: 1 3 5 7 9
+
+for i in range(10, 0, -1):
+    print(i)
+# Output: 10 9 8 7 6 5 4 3 2 1
+\end{lstlisting}
+
+\section{For Loop with Strings}
+
+You can iterate over each character in a string:
+
+\begin{lstlisting}[language=Python]
+text = "John Nayak"
+for char in text:
+    print(char)
+\end{lstlisting}
+
+\section{While Loop}
+
+The \texttt{while} loop continues to execute as long as the condition is true.
+
+\begin{lstlisting}[language=Python]
+count = 0
+while count < 5:
+    print(count)
+    count += 1
+# Output: 0 1 2 3 4
+\end{lstlisting}
+
+\section{Loop Control Statements}
+
+\subsection{Break}
+
+Exits the loop prematurely.
+
+\begin{lstlisting}[language=Python]
+for i in range(10):
+    if i == 5:
+        break
+    print(i)
+# Output: 0 1 2 3 4
+\end{lstlisting}
+
+\subsection{Continue}
+
+Skips the current iteration and continues with the next.
+
+\begin{lstlisting}[language=Python]
+for i in range(10):
+    if i % 2 == 0:
+        continue
+    print(i)
+# Output: 1 3 5 7 9
+\end{lstlisting}
+
+\subsection{Pass}
+
+Does nothing; acts as a placeholder.
+
+\begin{lstlisting}[language=Python]
+for i in range(5):
+    if i == 3:
+        pass
+    print(f"Number is {i}")
+\end{lstlisting}
+
+\section{Nested Loops}
+
+A loop inside another loop.
+
+\begin{lstlisting}[language=Python]
+for i in range(3):
+    for j in range(2):
+        print(f"i = {i}, j = {j}")
+\end{lstlisting}
+
+\section{Practical Examples}
+
+\subsection{Sum of First n Natural Numbers}
+
+Using a while loop:
+\begin{lstlisting}[language=Python]
+n = 10
+sum = 0
+count = 1
+while count <= n:
+    sum += count
+    count += 1
+print("Sum of first", n, "natural numbers:", sum)
+\end{lstlisting}
+
+Using a for loop:
+\begin{lstlisting}[language=Python]
+n = 10
+sum = 0
+for i in range(1, n+1):
+    sum += i
+print("Sum of first", n, "natural numbers:", sum)
+\end{lstlisting}
+
+\subsection{Prime Numbers Between 1 and 100}
+
+\begin{lstlisting}[language=Python]
+for num in range(2, 101):
+    for i in range(2, num):
+        if num % i == 0:
+            break
+    else:
+        print(num)
+\end{lstlisting}
+
+\section{Common Errors and Best Practices}
+
+\begin{itemize}
+    \item Always update loop variables to avoid infinite loops.
+    \item Use proper indentation for nested loops.
+    \item Use \texttt{break}, \texttt{continue}, and \texttt{pass} appropriately.
+    \item Test your code with different inputs.
+\end{itemize}
+
+\section{Summary}
+
+Loops are powerful tools in Python that allow you to execute code multiple times.  
+Understanding for and while loops, along with loop control statements, helps you solve a wide range of programming tasks efficiently.
+
+\chapter{Python Lists}
+
+\section{Overview and Outline}
+
+In this chapter, we will cover:
+\begin{itemize}
+    \item Definition of lists
+    \item Creating a list
+    \item Accessing list items
+    \item Modifying list items
+    \item Common list methods
+    \item Slicing lists
+    \item Iterating over lists
+    \item List comprehension
+    \item Nested lists
+    \item Common errors
+\end{itemize}
+
+\section{Definition of Lists}
+
+Lists are ordered, mutable collections of items.  
+They can contain items of different data types.
+
+\section{Creating a List}
+
+\begin{lstlisting}[language=Python]
+# Empty list
+my_list = []
+print(type(my_list))  # <class 'list'>
+
+# List of strings
+names = ["John", "Jack", "Jacob"]
+print(names)
+
+# Mixed data types
+mixed_list = [1, "hello", 3.14, True]
+print(mixed_list)
+\end{lstlisting}
+
+\section{Accessing List Items}
+
+\begin{lstlisting}[language=Python]
+fruits = ["apple", "banana", "cherry", "kiwi", "guava"]
+
+print(fruits[0])      # apple
+print(fruits[2])      # cherry
+print(fruits[-1])     # guava (last element)
+print(fruits[1:4])    # ['banana', 'cherry', 'kiwi']
+print(fruits[1:])     # ['banana', 'cherry', 'kiwi', 'guava']
+\end{lstlisting}
+
+\section{Modifying List Items}
+
+\begin{lstlisting}[language=Python]
+fruits[1] = "watermelon"
+print(fruits)  # banana replaced by watermelon
+\end{lstlisting}
+
+\section{List Methods}
+
+\begin{lstlisting}[language=Python]
+fruits.append("orange")         # Add to end
+fruits.insert(1, "banana")      # Insert at index 1
+fruits.remove("banana")         # Remove first occurrence
+last_fruit = fruits.pop()       # Remove and return last item
+index_cherry = fruits.index("cherry")  # Get index of 'cherry'
+count_banana = fruits.count("banana")  # Count occurrences
+fruits.sort()                   # Sort list
+fruits.reverse()                # Reverse list
+fruits.clear()                  # Remove all items
+\end{lstlisting}
+
+\section{Slicing Lists}
+
+\begin{lstlisting}[language=Python]
+numbers = [1,2,3,4,5,6,7,8,9,10]
+print(numbers[2:5])      # [3, 4, 5]
+print(numbers[5:])       # [6, 7, 8, 9, 10]
+print(numbers[::2])      # [1, 3, 5, 7, 9]
+print(numbers[::-1])     # [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+\end{lstlisting}
+
+\section{Iterating Over Lists}
+
+\begin{lstlisting}[language=Python]
+for number in numbers:
+    print(number)
+
+# Iterating with index
+for index, number in enumerate(numbers):
+    print(f"Index {index}: {number}")
+\end{lstlisting}
+
+\section{List Comprehension}
+
+\subsection{Basic Syntax}
+\begin{lstlisting}[language=Python]
+# [expression for item in iterable]
+squares = [x**2 for x in range(10)]
+print(squares)
+\end{lstlisting}
+
+\subsection{With Condition}
+\begin{lstlisting}[language=Python]
+# [expression for item in iterable if condition]
+evens = [i for i in range(10) if i % 2 == 0]
+print(evens)
+\end{lstlisting}
+
+\section{Nested Lists}
+
+\begin{lstlisting}[language=Python]
+nested_list = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+print(nested_list[0])      # [1, 2, 3]
+print(nested_list[1][2])   # 6
+\end{lstlisting}
+
+\section{Common Errors}
+
+\begin{itemize}
+    \item IndexError: Accessing an index that does not exist.
+    \item TypeError: Using wrong data type for list operations.
+    \item Modifying a list slice with a non-list value.
+\end{itemize}
+
+
+
+\section{Advanced List Comprehension}
+
+\subsection{List Comprehension with Condition}
+
+\begin{lstlisting}[language=Python]
+# Traditional way
+even_numbers = []
+for i in range(10):
+    if i % 2 == 0:
+        even_numbers.append(i)
+print(even_numbers)
+
+# List comprehension way
+even_numbers = [num for num in range(10) if num % 2 == 0]
+print(even_numbers)
+\end{lstlisting}
+
+\subsection{Nested List Comprehension}
+
+You can use nested loops inside a list comprehension to create combinations or pairs.
+
+\begin{lstlisting}[language=Python]
+list1 = [1, 2, 3]
+list2 = ['a', 'b', 'c', 'd']
+
+pairs = [(i, j) for i in list1 for j in list2]
+print(pairs)
+# Output: [(1, 'a'), (1, 'b'), ..., (3, 'd')]
+\end{lstlisting}
+
+\subsection{List Comprehension with Function Calls}
+
+You can use function calls inside list comprehensions.
+
+\begin{lstlisting}[language=Python]
+words = ["hello", "world", "Python", "list", "comprehension"]
+lengths = [len(word) for word in words]
+print(lengths)
+# Output: [5, 5, 6, 4, 13]
+\end{lstlisting}
+
+\subsection{List Comprehension with Else Block (Assignment)}
+
+Try to create a list comprehension that uses an else block for conditional logic.
+
+\begin{lstlisting}[language=Python]
+# Example (for practice):
+result = [x if x % 2 == 0 else -x for x in range(10)]
+print(result)
+# Output: [0, -1, 2, -3, 4, -5, 6, -7, 8, -9]
+\end{lstlisting}
+
+\section{Conclusion}
+
+\begin{itemize}
+    \item Lists are ordered, mutable, and can hold mixed data types.
+    \item Indexing and slicing allow you to access and modify items efficiently.
+    \item Built-in list methods simplify common operations.
+    \item List comprehensions provide a concise way to create and transform lists.
+    \item Nested lists enable multi-dimensional data structures.
+\end{itemize}
+
+List comprehensions are a powerful and compact feature in Python, allowing you to replace verbose loops with cleaner code.  
+Understanding and practicing list comprehensions will help you write more efficient and readable Python programs.
+
+\textbf{Practice with more examples to master lists and list comprehensions!}
+
+\chapter{Python Tuples}
+
+\section{Overview and Outline}
+
+In this chapter, we will cover:
+\begin{itemize}
+    \item Definition of tuples
+    \item Creating tuples
+    \item Accessing tuple elements
+    \item Tuple operations
+    \item Immutable nature of tuples
+    \item Common tuple methods
+    \item Packing and unpacking tuples
+    \item Nested tuples
+    \item Practical examples
+    \item Conclusion
+\end{itemize}
+
+\section{Definition of Tuples}
+
+Tuples are ordered collections of items that are \textbf{immutable}.  
+They are similar to lists, but their elements cannot be changed once assigned.
+
+\section{Creating Tuples}
+
+\begin{lstlisting}[language=Python]
+# Empty tuple
+empty_tuple = ()
+print(empty_tuple)
+print(type(empty_tuple))  # <class 'tuple'>
+
+# Tuple from a list
+numbers = tuple([1, 2, 3, 4, 5, 6])
+print(numbers)
+
+# Mixed data types
+mixed_tuple = (1, "hello", 3.14, True)
+print(mixed_tuple)
+
+# Convert tuple to list
+as_list = list(numbers)
+print(as_list)
+\end{lstlisting}
+
+\section{Accessing Tuple Elements}
+
+\begin{lstlisting}[language=Python]
+print(numbers[0])      # First element
+print(numbers[-1])     # Last element
+print(numbers[0:4])    # Slicing
+print(numbers[::-1])   # Reverse
+\end{lstlisting}
+
+\section{Tuple Operations}
+
+\begin{lstlisting}[language=Python]
+# Concatenation
+concat_tuple = numbers + mixed_tuple
+print(concat_tuple)
+
+# Repetition
+repeat_tuple = mixed_tuple * 3
+print(repeat_tuple)
+\end{lstlisting}
+
+\section{Immutable Nature of Tuples}
+
+Tuples are immutable; you cannot change their elements after creation.
+
+\begin{lstlisting}[language=Python]
+# Lists are mutable
+my_list = [1, 2, 3, 4, 5]
+my_list[0] = "John"
+print(my_list)
+
+# Tuples are immutable
+try:
+    numbers[1] = "John"
+except TypeError as e:
+    print(e)  # 'tuple' object does not support item assignment
+\end{lstlisting}
+
+\section{Tuple Methods}
+
+\begin{lstlisting}[language=Python]
+# Count occurrences
+print(numbers.count(1))  # 1
+
+# Index of value
+print(numbers.index(3))  # 2
+\end{lstlisting}
+
+\section{Packing and Unpacking Tuples}
+
+\begin{lstlisting}[language=Python]
+# Packing
+packed_tuple = (1, "hello", 3.14)
+print(packed_tuple)
+
+# Unpacking
+a, b, c = packed_tuple
+print(a, b, c)
+
+# Unpacking with star
+numbers = (1, 2, 3, 4, 5, 6)
+first, *middle, last = numbers
+print(first)    # 1
+print(middle)   # [2, 3, 4, 5]
+print(last)     # 6
+\end{lstlisting}
+
+\section{Nested Tuples}
+
+\begin{lstlisting}[language=Python]
+nested_tuple = ((1, 2, 3), ("a", "b", "c"), (True, False))
+print(nested_tuple[0])        # (1, 2, 3)
+print(nested_tuple[1][2])     # 'c'
+
+# Iterating over nested tuples
+for sub_tuple in nested_tuple:
+    for item in sub_tuple:
+        print(item, end=" ")
+    print()
+\end{lstlisting}
+
+\section{Conclusion}
+
+Tuples are versatile and useful in many real-world scenarios where an immutable and ordered collection is required.  
+They are commonly used in data structures, function arguments, return values, and as dictionary keys.  
+Understanding tuples can improve the efficiency and readability of your Python code.
+
+\chapter{Python Dictionaries}
+
+\section{Overview and Outline}
+
+In this chapter, we will cover:
+\begin{itemize}
+    \item Introduction to dictionaries
+    \item Creating dictionaries
+    \item Accessing dictionary elements
+    \item Modifying dictionary elements
+    \item Common dictionary methods
+    \item Iterating over dictionaries
+    \item Nested dictionaries
+    \item Dictionary comprehension
+    \item Common errors
+\end{itemize}
+
+\section{Introduction to Dictionaries}
+
+Dictionaries are unordered collections of items stored as key-value pairs.  
+Keys must be unique and immutable; values can be of any type.
+
+\section{Creating Dictionaries}
+
+\begin{lstlisting}[language=Python]
+# Empty dictionary
+empty_dict = {}
+print(type(empty_dict))  # <class 'dict'>
+
+# Another way
+empty_dict2 = dict()
+print(empty_dict2)
+
+# Dictionary with key-value pairs
+student = {
+    "name": "John",
+    "age": 32,
+    "grade": "A"
+}
+print(student)
+\end{lstlisting}
+
+\section{Accessing Dictionary Elements}
+
+\begin{lstlisting}[language=Python]
+# Access by key
+print(student["grade"])  # A
+print(student["age"])    # 32
+
+# Using get method
+print(student.get("grade"))        # A
+print(student.get("last_name"))    # None
+print(student.get("last_name", "Not available"))  # Not available
+\end{lstlisting}
+
+\section{Modifying Dictionary Elements}
+
+\begin{lstlisting}[language=Python]
+# Update value
+student["age"] = 33
+
+# Add new key-value pair
+student["address"] = "India"
+
+# Delete a key-value pair
+del student["grade"]
+
+print(student)
+\end{lstlisting}
+
+\section{Common Dictionary Methods}
+
+\begin{lstlisting}[language=Python]
+# Get all keys
+print(student.keys())
+
+# Get all values
+print(student.values())
+
+# Get all key-value pairs
+print(student.items())
+
+# Shallow copy
+student_copy = student.copy()
+student["name"] = "John2"
+print(student_copy["name"])  # John
+print(student["name"])       # John2
+\end{lstlisting}
+
+\section{Iterating Over Dictionaries}
+
+\begin{lstlisting}[language=Python]
+# Iterate over keys
+for key in student.keys():
+    print(key)
+
+# Iterate over values
+for value in student.values():
+    print(value)
+
+# Iterate over key-value pairs
+for key, value in student.items():
+    print(f"{key}: {value}")
+\end{lstlisting}
+
+\section{Nested Dictionaries}
+
+\begin{lstlisting}[language=Python]
+students = {
+    "student1": {"name": "John", "age": 32},
+    "student2": {"name": "Peter", "age": 35}
+}
+print(students["student2"]["name"])  # Peter
+
+# Iterating over nested dictionaries
+for student_id, student_info in students.items():
+    print(f"{student_id}: {student_info}")
+    for key, value in student_info.items():
+        print(f"{key}: {value}")
+\end{lstlisting}
+
+\section{Dictionary Comprehension}
+
+\begin{lstlisting}[language=Python]
+# Create a dictionary of squares
+squares = {x: x**2 for x in range(5)}
+print(squares)
+# Output: {0: 0, 1: 1, 2: 4, 3: 9, 4: 16}
+\end{lstlisting}
+
+\section{Common Errors}
+
+\begin{itemize}
+    \item KeyError: Accessing a key that does not exist.
+    \item Duplicate keys: Only the last value for a key is kept.
+    \item Shallow copy: Use \texttt{copy()} to avoid reference issues.
+\end{itemize}
+
+\section{Conditional Dictionary Comprehension}
+
+You can add conditions to dictionary comprehensions.
+
+\begin{lstlisting}[language=Python]
+# Squares of only even numbers
+even_squares = {x: x**2 for x in range(10) if x % 2 == 0}
+print(even_squares)
+# Output: {0: 0, 2: 4, 4: 16, 6: 36, 8: 64}
+\end{lstlisting}
+
+\section{Practical Examples}
+
+\subsection{Counting Frequency of Elements in a List}
+
+\begin{lstlisting}[language=Python]
+numbers = [1, 2, 2, 3, 3, 3, 4, 4, 4, 4]
+frequency = {}
+for number in numbers:
+    if number in frequency:
+        frequency[number] += 1
+    else:
+        frequency[number] = 1
+print(frequency)
+# Output: {1: 1, 2: 2, 3: 3, 4: 4}
+\end{lstlisting}
+
+\subsection{Merging Two Dictionaries}
+
+\begin{lstlisting}[language=Python]
+dict1 = {"a": 1, "b": 2}
+dict2 = {"b": 3, "c": 4}
+merged_dict = {**dict1, **dict2}
+print(merged_dict)
+# Output: {'a': 1, 'b': 3, 'c': 4}
+\end{lstlisting}
+
+\section{Summary}
+
+Dictionaries are powerful data structures for storing and manipulating key-value pairs in Python.  
+They are mutable, support many useful methods, and can be nested or created efficiently using dictionary comprehensions.
+
+Dictionary comprehensions allow you to build dictionaries with conditions and concise syntax.  
+Dictionaries are commonly used for counting, merging, and organizing data.  
+\textbf{Practice with more examples to master dictionary operations in Python!}
+
+
+\chapter{Real World Examples Using Lists}
+
+\section{Overview}
+
+Lists are widely used in real-world applications and are a fundamental data structure in Python.  
+This chapter demonstrates practical examples of how lists can be used in various scenarios.
+
+\section{Managing a To-Do List}
+
+\begin{lstlisting}[language=Python]
+# Create a to-do list
+to_do_list = ["Buy groceries", "Clean the house", "Pay bills"]
+
+# Add new tasks
+to_do_list.append("Schedule meeting")
+to_do_list.append("Go for a run")
+
+# Remove a completed task
+to_do_list.remove("Clean the house")
+
+# Check if a task is in the list
+if "Pay bills" in to_do_list:
+    print("Don't forget to pay the utility bills!")
+
+# Print remaining tasks
+print("To-do list remaining:")
+for task in to_do_list:
+    print(f"- {task}")
+\end{lstlisting}
+
+\section{Organizing Student Grades}
+
+\begin{lstlisting}[language=Python]
+grades = [85, 92, 78, 90, 88]
+
+# Add a new grade
+grades.append(95)
+
+# Calculate average grade
+average = sum(grades) / len(grades)
+
+# Find highest and lowest grades
+highest = max(grades)
+lowest = min(grades)
+
+print(f"Average grade: {average}")
+print(f"Highest grade: {highest}")
+print(f"Lowest grade: {lowest}")
+\end{lstlisting}
+
+\section{Managing an Inventory}
+
+\begin{lstlisting}[language=Python]
+inventory = ["apples", "bananas", "oranges", "grapes"]
+
+# Add a new item
+inventory.append("strawberries")
+
+# Remove an item after delivery
+inventory.remove("bananas")
+
+# Check if an item is in stock
+item = "oranges"
+if item in inventory:
+    print(f"{item} are in stock.")
+else:
+    print(f"{item} are out of stock.")
+
+# Print current inventory
+print("Inventory list:", inventory)
+\end{lstlisting}
+
+\section{Collecting User Feedback}
+
+\begin{lstlisting}[language=Python]
+feedback = [
+    "Great service",
+    "Very satisfied",
+    "Could be better",
+    "Excellent experience"
+]
+
+# Add a new feedback
+feedback.append("Not happy with the service")
+
+# Count positive feedback
+positive_count = sum(
+    1 for comment in feedback if "great" in comment.lower() or "excellent" in comment.lower()
+)
+
+print(f"Positive feedback count: {positive_count}")
+print("User feedback comments:")
+for comment in feedback:
+    print(f"- {comment}")
+\end{lstlisting}
+
+\section{Summary}
+
+Lists are a versatile and commonly used data structure in Python.  
+They help manage tasks, organize data, and analyze information in many real-world applications.  
+Practice with these examples to strengthen your understanding of lists in Python.
+
+\chapter{Python Functions}
+
+\section{Overview and Outline}
+
+In this chapter, we will cover:
+\begin{itemize}
+    \item What are functions?
+    \item Why use functions?
+    \item Defining and calling functions
+    \item Function parameters and default parameters
+    \item Variable length arguments: positional and keyword
+    \item Return statement
+    \item Practical examples
+\end{itemize}
+
+\section{Introduction to Functions}
+
+A function is a block of code that performs a specific task.  
+Functions help organize code, enable code reuse, and improve readability.
+
+\section{Defining and Calling Functions}
+
+\begin{lstlisting}[language=Python]
+# Basic function syntax
+def function_name(parameters):
+    """Docstring: describes the function."""
+    # Function body
+    return value
+
+# Example: Check even or odd
+def even_or_odd(num):
+    """Finds whether a number is even or odd."""
+    if num % 2 == 0:
+        print("The number is even")
+    else:
+        print("The number is odd")
+
+even_or_odd(24)
+\end{lstlisting}
+
+\section{Why Use Functions?}
+
+Functions allow you to reuse code and keep your programs organized.  
+Instead of repeating code, you can call a function whenever needed.
+
+\section{Function with Multiple Parameters}
+
+\begin{lstlisting}[language=Python]
+def add(a, b):
+    """Returns the sum of two numbers."""
+    return a + b
+
+result = add(2, 4)
+print(result)  # Output: 6
+\end{lstlisting}
+
+\section{Default Parameters}
+
+\begin{lstlisting}[language=Python]
+def greet(name="Guest"):
+    print(f"Hello {name}, welcome to the Paradise!")
+
+greet("John")  # Output: Hello John, welcome to the Paradise!
+greet()         # Output: Hello Guest, welcome to the Paradise!
+\end{lstlisting}
+
+\section{Variable Length Arguments}
+
+\subsection{Positional Arguments (\texttt{*args})}
+
+\begin{lstlisting}[language=Python]
+def print_numbers(*args):
+    for number in args:
+        print(number)
+
+print_numbers(1, 2, 3, 4, 5, "John")
+\end{lstlisting}
+
+\subsection{Keyword Arguments (\texttt{**kwargs})}
+
+\begin{lstlisting}[language=Python]
+def print_details(**kwargs):
+    for key, value in kwargs.items():
+        print(f"{key}: {value}")
+
+print_details(name="John", age=32, country="India")
+\end{lstlisting}
+
+\subsection{Combining Positional and Keyword Arguments}
+
+\begin{lstlisting}[language=Python]
+def print_all(*args, **kwargs):
+    print("Positional arguments:")
+    for val in args:
+        print(val)
+    print("Keyword arguments:")
+    for key, value in kwargs.items():
+        print(f"{key}: {value}")
+
+print_all(1, 2, 3, name="John", age=32)
+\end{lstlisting}
+
+\section{Return Statement}
+
+Functions can return values, including multiple values.
+
+\begin{lstlisting}[language=Python]
+def multiply(a, b):
+    return a * b
+
+result = multiply(2, 3)
+print(result)  # Output: 6
+
+# Returning multiple values
+def multi_return(a, b):
+    return a * b, a, b
+
+x, y, z = multi_return(2, 3)
+print(x, y, z)  # Output: 6 2 3
+\end{lstlisting}
+
+\section{Summary}
+
+Functions are essential for organizing, reusing, and maintaining code in Python.  
+They support parameters, default values, variable length arguments, and can return single or multiple values.  
+Practice writing and using functions to master this important concept!
+
+\section{Information Alert}
+
+\textbf{Schedule learning time:}  
+Learning a little each day adds up. Research shows that students who make learning a habit are more likely to reach their goals.  
+Set time aside to learn and get reminders using your learning scheduler.
+
+\chapter{Functions in Python: Practical Examples}
+
+In this chapter, we will explore several practical examples of Python functions. These examples will reinforce key concepts such as parameters, conditionals, recursion, string manipulation, dictionaries, and file operations.
+
+\section{Temperature Conversion}
+
+We begin with a simple but useful example: converting temperatures between Celsius and Fahrenheit.
+
+\begin{lstlisting}[language=Python, caption={Temperature conversion function}]
+def convert_temperature(temperature, unit):
+    """
+    Converts temperature between Celsius and Fahrenheit.
+    unit = 'C' means convert Celsius to Fahrenheit
+    unit = 'F' means convert Fahrenheit to Celsius
+    """
+    if unit == 'C':
+        return (temperature * 9/5) + 32
+    elif unit == 'F':
+        return (temperature - 32) * 5/9
+    else:
+        return None
+
+# Example usage
+print(convert_temperature(25, 'C'))  # 77.0
+print(convert_temperature(77, 'F'))  # 25.0
+\end{lstlisting}
+
+This demonstrates how conditionals help handle different cases based on the unit provided.
+
+\section{Password Strength Checker}
+
+Next, we create a function to check whether a password is strong. A strong password should:
+\begin{itemize}
+    \item Be at least 8 characters long
+    \item Contain at least one digit
+    \item Contain at least one uppercase letter
+    \item Contain at least one lowercase letter
+    \item Contain at least one special character
+\end{itemize}
+
+\begin{lstlisting}[language=Python, caption={Password strength checker}]
+def is_strong_password(password):
+    """
+    Checks if the given password is strong.
+    """
+    if len(password) < 8:
+        return False
+    if not any(char.isdigit() for char in password):
+        return False
+    if not any(char.islower() for char in password):
+        return False
+    if not any(char.isupper() for char in password):
+        return False
+    special_chars = "!@#$%^&*()-_=+[{]}|;:'\",<.>/?`~"
+    if not any(char in special_chars for char in password):
+        return False
+    return True
+
+# Example usage
+print(is_strong_password("WeakPwd"))      # False
+print(is_strong_password("Str0ngPwd!"))   # True
+\end{lstlisting}
+
+\section{Shopping Cart: Total Cost}
+
+A practical use case of functions and dictionaries is computing the total cost of items in a shopping cart.
+
+\begin{lstlisting}[language=Python, caption={Calculating total cost of shopping cart}]
+def calculate_total_cost(cart):
+    total_cost = 0
+    for item in cart:
+        total_cost += item["price"] * item["quantity"]
+    return total_cost
+
+# Example cart
+cart = [
+    {"name": "Apple", "price": 0.5, "quantity": 4},
+    {"name": "Banana", "price": 0.3, "quantity": 6},
+    {"name": "Orange", "price": 0.7, "quantity": 3}
+]
+
+print(calculate_total_cost(cart))  # 5.9
+\end{lstlisting}
+
+\section{Palindrome Checker}
+
+A palindrome is a string that reads the same forwards and backwards.
+
+\begin{lstlisting}[language=Python, caption={Palindrome check}]
+def is_palindrome(s):
+    s = s.lower().replace(" ", "")
+    return s == s[::-1]
+
+# Example usage
+print(is_palindrome("aba"))                  # True
+print(is_palindrome("A man a plan a canal Panama"))  # True
+print(is_palindrome("hello"))                # False
+\end{lstlisting}
+
+\section{Factorial Using Recursion}
+
+Recursion is when a function calls itself. A classic example is computing factorials.
+
+\begin{lstlisting}[language=Python, caption={Factorial with recursion}]
+def factorial(n):
+    if n == 0:
+        return 1
+    else:
+        return n * factorial(n - 1)
+
+# Example usage
+print(factorial(5))  # 120
+\end{lstlisting}
+
+\section{Word Frequency in a File}
+
+We can read a text file and count the frequency of each word using dictionaries.
+
+\begin{lstlisting}[language=Python, caption={Word frequency counter}]
+def count_word_frequency(file_path):
+    word_count = {}
+    with open(file_path, "r") as file:
+        for line in file:
+            words = line.split()
+            for word in words:
+                word = word.lower().strip(".,!?;:\"'()[]{}")
+                word_count[word] = word_count.get(word, 0) + 1
+    return word_count
+
+# Example usage
+print(count_word_frequency("sample.txt"))
+\end{lstlisting}
+
+\section{Email Validation with Regular Expressions}
+
+Finally, we can validate email addresses using regular expressions.
+
+\begin{lstlisting}[language=Python, caption={Email validation}]
+import re
+
+def is_valid_email(email):
+    pattern = r'^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$'
+    return re.match(pattern, email) is not None
+
+# Example usage
+print(is_valid_email("user@gmail.com"))   # True
+print(is_valid_email("invalid-email"))    # False
+\end{lstlisting}
+
+---
+
+These examples demonstrate how Python functions can be applied in real-world scenarios such as data validation, text analysis, and simple mathematical computations.
+
+\chapter{Lambda Functions in Python}
+
+\section{Introduction}
+In this chapter, we will discuss \textbf{lambda functions} in Python.  
+Lambda functions are small, anonymous functions defined using the \texttt{lambda} keyword.  
+
+\begin{itemize}
+    \item An \textbf{anonymous function} is simply a function without a name.
+    \item Lambda functions can take \textbf{any number of arguments}, but they contain only \textbf{one expression}.
+    \item They are often used for short operations or as arguments to higher-order functions such as \texttt{map()} and \texttt{filter()}.
+\end{itemize}
+
+\section{Syntax}
+The general syntax of a lambda function is:
+\[
+\texttt{lambda arguments : expression}
+\]
+
+\section{Basic Example}
+Consider a simple function that adds two numbers:
+\begin{lstlisting}[language=Python, caption={Standard function for addition}]
+def addition(a, b):
+    return a + b
+
+print(addition(2, 3))  # 5
+\end{lstlisting}
+
+This function contains only a single expression. Instead of writing a full function definition, we can use a lambda function:
+
+\begin{lstlisting}[language=Python, caption={Addition using lambda}]
+addition = lambda a, b: a + b
+print(addition(5, 6))  # 11
+\end{lstlisting}
+
+Here, \texttt{addition} is a variable holding a lambda function.
+
+\section{Checking Even Numbers}
+Let us now write a function to check whether a number is even:
+\begin{lstlisting}[language=Python, caption={Even check using a normal function}]
+def is_even(num):
+    return num % 2 == 0
+
+print(is_even(24))  # True
+\end{lstlisting}
+
+Using a lambda function:
+\begin{lstlisting}[language=Python, caption={Even check using lambda}]
+is_even = lambda num: num % 2 == 0
+print(is_even(12))  # True
+\end{lstlisting}
+
+\section{Lambda with Multiple Parameters}
+Lambda functions can also accept multiple parameters.
+
+\begin{lstlisting}[language=Python, caption={Addition with three parameters}]
+addition = lambda x, y, z: x + y + z
+print(addition(12, 13, 14))  # 39
+\end{lstlisting}
+
+\section{Using Lambda with Map}
+Lambda functions are commonly used with higher-order functions like \texttt{map()}.
+
+\subsection{Without Map}
+To find the square of a number:
+\begin{lstlisting}[language=Python, caption={Square function}]
+def square(num):
+    return num ** 2
+
+print(square(2))  # 4
+\end{lstlisting}
+
+If we want to apply this to a list of numbers, we would normally write a loop.
+
+\subsection{With Map and Lambda}
+Instead, we can use \texttt{map()} with \texttt{lambda}:
+\begin{lstlisting}[language=Python, caption={Using map with lambda}]
+numbers = [1, 2, 3, 4, 5, 6]
+squared_numbers = list(map(lambda x: x**2, numbers))
+print(squared_numbers)  # [1, 4, 9, 16, 25, 36]
+\end{lstlisting}
+
+Here:
+\begin{itemize}
+    \item The first argument of \texttt{map()} is a function (in this case, a lambda).
+    \item The second argument is an iterable (the list \texttt{numbers}).
+    \item The result is a \texttt{map} object, which we convert to a list.
+\end{itemize}
+
+\section{Conclusion}
+Lambda functions allow us to write small, concise functions in a single line.  
+They are particularly powerful when combined with functions like \texttt{map()} and \texttt{filter()}.  
+
+In the next chapter, we will discuss \texttt{map()} and \texttt{filter()} functions in detail.
+
+
+\chapter{The \texttt{map()} Function in Python}
+
+\section{Introduction}
+In this chapter, we continue our discussion on Python by learning about the \texttt{map()} function.  
+
+The \texttt{map()} function:
+\begin{itemize}
+    \item Applies a given function to all the items in an input iterable (such as a list or tuple).
+    \item Returns a \texttt{map} object, which is an iterator.
+    \item Is particularly useful for transforming data without writing explicit loops.
+\end{itemize}
+
+\section{Basic Example}
+Let us first define a simple function that computes the square of a number:
+\begin{lstlisting}[language=Python, caption={Square function}]
+def square(n):
+    return n * n
+
+print(square(4))   # 16
+print(square(10))  # 100
+\end{lstlisting}
+
+If we want to apply this function to a list of numbers, we can use \texttt{map()} instead of writing a loop.
+
+\begin{lstlisting}[language=Python, caption={Using map with a defined function}]
+numbers = [1, 2, 3, 4, 5, 6, 7, 8]
+result = map(square, numbers)
+print(list(result))  
+# Output: [1, 4, 9, 16, 25, 36, 49, 64]
+\end{lstlisting}
+
+Here:
+\begin{itemize}
+    \item The first argument to \texttt{map()} is the function name (\texttt{square}).
+    \item The second argument is the iterable (\texttt{numbers}).
+    \item The result is a \texttt{map} object, which we convert into a list.
+\end{itemize}
+
+\section{Using Lambda Functions with Map}
+Instead of defining a separate function, we can use \textbf{lambda functions} with \texttt{map()}.
+
+\begin{lstlisting}[language=Python, caption={Using map with a lambda function}]
+numbers = [1, 2, 3, 4, 5, 6]
+result = list(map(lambda x: x * x, numbers))
+print(result)
+# Output: [1, 4, 9, 16, 25, 36]
+\end{lstlisting}
+
+Lambda functions make the code shorter and more readable.
+
+\section{Mapping Multiple Iterables}
+The \texttt{map()} function can also take multiple iterables.  
+In such cases, the function should accept the same number of arguments as the iterables.
+
+\begin{lstlisting}[language=Python, caption={Adding two lists using map}]
+numbers1 = [1, 2, 3]
+numbers2 = [4, 5, 6]
+
+added_numbers = list(map(lambda x, y: x + y, numbers1, numbers2))
+print(added_numbers)
+# Output: [5, 7, 9]
+\end{lstlisting}
+
+\section{Using Built-in Functions with Map}
+We can also apply built-in functions directly with \texttt{map()}.
+
+\subsection{Type Conversion}
+\begin{lstlisting}[language=Python, caption={Converting strings to integers}]
+string_numbers = ["1", "2", "3", "4"]
+int_numbers = list(map(int, string_numbers))
+print(int_numbers)
+# Output: [1, 2, 3, 4]
+\end{lstlisting}
+
+\subsection{String Manipulation}
+\begin{lstlisting}[language=Python, caption={Converting words to uppercase}]
+words = ["apple", "banana", "cherry"]
+upper_words = list(map(str.upper, words))
+print(upper_words)
+# Output: ['APPLE', 'BANANA', 'CHERRY']
+\end{lstlisting}
+
+\section{Map with a List of Dictionaries}
+We can even use \texttt{map()} on complex structures like a list of dictionaries.
+
+\begin{lstlisting}[language=Python, caption={Extracting names from a list of dictionaries}]
+def get_name(person):
+    return person["name"]
+
+people = [
+    {"name": "John", "age": 32},
+    {"name": "Jack", "age": 33}
+]
+
+names = list(map(get_name, people))
+print(names)
+# Output: ['John', 'Jack']
+\end{lstlisting}
+
+\section{Conclusion}
+The \texttt{map()} function is a powerful tool for applying transformations to iterable data structures.  
+
+\begin{itemize}
+    \item It can be used with regular functions, lambda functions, and even multiple iterables.
+    \item Built-in functions can also be applied directly using \texttt{map()}.
+    \item It improves code readability and efficiency by eliminating explicit loops.
+\end{itemize}
+
+By mastering \texttt{map()}, you can write concise, efficient, and more Pythonic code.
+
+
+\chapter{The \texttt{filter()} Function in Python}
+
+\section{Introduction}
+The \texttt{filter()} function in Python constructs an iterator from elements of an iterable for which a given function returns \texttt{True}.  
+It is primarily used to \textbf{filter out items from a list (or any iterable) based on a condition}.  
+
+Formally:
+\[
+\texttt{filter(function, iterable)}
+\]
+- \textbf{function}: A function that returns \texttt{True} or \texttt{False}.  
+- \textbf{iterable}: The sequence (list, tuple, dictionary, etc.) to filter.  
+
+The result is a \texttt{filter} object (an iterator), which can be converted to a list, tuple, or other data structures.
+
+\section{Basic Example: Filtering Even Numbers}
+Let us define a function that checks whether a number is even:
+
+\begin{lstlisting}[language=Python, caption={Checking even numbers}]
+def is_even(num):
+    return num % 2 == 0
+
+print(is_even(24))   # True
+print(is_even(13))   # False
+\end{lstlisting}
+
+Now, we can apply this function to filter only even numbers from a list:
+
+\begin{lstlisting}[language=Python, caption={Filtering even numbers from a list}]
+numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+
+result = filter(is_even, numbers)
+print(list(result))
+# Output: [2, 4, 6, 8, 10, 12]
+\end{lstlisting}
+
+Here:
+\begin{itemize}
+    \item \texttt{is\_even} is the filtering function.
+    \item Only those elements for which the function returns \texttt{True} are included in the result.
+\end{itemize}
+
+\section{Using Lambda Functions with Filter}
+We can avoid writing a separate function by using a \textbf{lambda function}.
+
+\begin{lstlisting}[language=Python, caption={Filtering numbers greater than 5 using lambda}]
+numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+result = filter(lambda x: x > 5, numbers)
+print(list(result))
+# Output: [6, 7, 8, 9]
+\end{lstlisting}
+
+This provides a concise way to apply filtering logic inline.
+
+\section{Filter with Multiple Conditions}
+We can also filter elements using multiple conditions combined with logical operators.
+
+\begin{lstlisting}[language=Python, caption={Filtering even numbers greater than 5}]
+numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+result = filter(lambda x: x > 5 and x % 2 == 0, numbers)
+print(list(result))
+# Output: [6, 8]
+\end{lstlisting}
+
+In this example:
+\begin{itemize}
+    \item The number must be greater than 5.
+    \item The number must also be even.
+\end{itemize}
+
+\section{Filter with Dictionaries}
+The \texttt{filter()} function can also be applied to a list of dictionaries.
+
+\begin{lstlisting}[language=Python, caption={Filtering people with age > 25}]
+people = [
+    {"name": "John", "age": 32},
+    {"name": "Jack", "age": 33},
+    {"name": "John", "age": 25}
+]
+
+def age_above_25(person):
+    return person["age"] > 25
+
+result = filter(age_above_25, people)
+print(list(result))
+# Output: [{'name': 'John', 'age': 32}, {'name': 'Jack', 'age': 33}]
+\end{lstlisting}
+
+Here, only people whose age is greater than 25 are returned.
+
+\section{Conclusion}
+The \texttt{filter()} function is a powerful tool for data selection:
+\begin{itemize}
+    \item It constructs iterators that return only elements satisfying a condition.
+    \item It can be used with both named functions and lambda expressions.
+    \item It supports filtering on complex data structures such as lists of dictionaries.
+\end{itemize}
+
+By mastering \texttt{filter()}, you can write concise, efficient, and Pythonic code for data processing and manipulation.
+
+\chapter{Modules and Packages in Python}
+
+\section{Introduction}
+Python is an open-source programming language with a rich ecosystem of modules and packages.  
+Modules and packages allow you to:
+\begin{itemize}
+    \item Reuse code efficiently
+    \item Organize code logically
+    \item Access built-in or third-party functionality without rewriting it from scratch
+\end{itemize}
+
+\section{Importing Built-in Modules}
+Python provides many built-in modules such as \texttt{math}. To use a module, you can import it:
+
+\begin{lstlisting}[language=Python, caption={Basic import}]
+import math
+
+print(math.sqrt(16))  # Output: 4.0
+print(math.pi)        # Output: 3.141592653589793
+\end{lstlisting}
+
+You can also import specific functions from a module:
+
+\begin{lstlisting}[language=Python]
+from math import sqrt, pi
+
+print(sqrt(25))  # Output: 5.0
+print(pi)        # Output: 3.141592653589793
+\end{lstlisting}
+
+Or import all functions using the wildcard \texttt{*}:
+
+\begin{lstlisting}[language=Python]
+from math import *
+
+print(sqrt(16))  # Output: 4.0
+print(pi)        # Output: 3.141592653589793
+\end{lstlisting}
+
+\section{Third-party Packages}
+Third-party packages like \texttt{NumPy} are not included by default. You can install them using \texttt{pip}:
+
+\begin{lstlisting}[language=bash]
+pip install numpy
+# or via requirements.txt:
+pip install -r requirements.txt
+\end{lstlisting}
+
+After installation, you can import the package and optionally use an alias:
+
+\begin{lstlisting}[language=Python]
+import numpy as np
+
+arr = np.array([1, 2, 3, 4])
+print(arr)  # Output: [1 2 3 4]
+\end{lstlisting}
+
+\section{Creating Custom Modules and Packages}
+
+\subsection{Module}
+A module is a Python file containing functions or classes. Example: \texttt{maths.py}:
+
+\begin{lstlisting}[language=Python]
+# maths.py
+def addition(a, b):
+    return a + b
+
+def subtraction(a, b):
+    return a - b
+\end{lstlisting}
+
+\subsection{Package}
+A package is a folder containing one or more modules and a special file \texttt{\_\_init\_\_.py}.  
+Example folder structure:
+\begin{verbatim}
+package/
+    __init__.py
+    maths.py
+\end{verbatim}
+
+Import a function from a custom package:
+
+\begin{lstlisting}[language=Python]
+from package.maths import addition, subtraction
+
+print(addition(2, 3))      # Output: 5
+print(subtraction(4, 3))   # Output: 1
+\end{lstlisting}
+
+Alternatively:
+
+\begin{lstlisting}[language=Python]
+from package import maths
+
+print(maths.addition(2, 3))      # Output: 5
+print(maths.subtraction(4, 3))   # Output: 1
+\end{lstlisting}
+
+\subsection{Sub-packages}
+Packages can contain sub-packages. Example folder structure:
+
+\begin{lstlisting}[language=Python]
+package/
+    __init__.py
+    maths.py
+    subpackage/
+        __init__.py
+        mult.py
+\end{lstlisting}
+
+
+\texttt{mult.py}:
+
+\begin{lstlisting}[language=Python]
+def multiply(a, b):
+    return a * b
+\end{lstlisting}
+
+Import from a sub-package:
+
+\begin{lstlisting}[language=Python]
+from package.subpackage.mult import multiply
+
+print(multiply(4, 5))  # Output: 20
+\end{lstlisting}
+
+\section{Key Takeaways}
+\begin{itemize}
+    \item Modules and packages help organize and reuse code efficiently.
+    \item Built-in modules (\texttt{math}) provide ready-made functionality.
+    \item Third-party packages (\texttt{NumPy}) can be installed via \texttt{pip}.
+    \item Custom packages require a folder with an \texttt{\_\_init\_\_.py} file.
+    \item Sub-packages allow hierarchical organization of complex codebases.
+\end{itemize}
+
+\chapter{Python Standard Library Overview}
+
+Python provides a vast standard library that offers modules and packages to handle common programming tasks. These libraries are open source and can be used to simplify development and reduce code complexity. In this chapter, we discuss some commonly used modules and their usage.
+
+\section{Array Module}
+
+The \texttt{array} module allows the creation of arrays with items restricted by type code.
+
+\begin{lstlisting}[language=Python]
+import array
+
+arr = array.array('i', [1, 2, 3, 4])  # 'i' indicates integer type code
+print(arr)
+\end{lstlisting}
+
+\section{Math Module}
+
+The \texttt{math} module provides functions and constants for mathematical operations.
+
+\begin{lstlisting}[language=Python]
+import math
+
+print(math.sqrt(16))
+print(math.pi)
+\end{lstlisting}
+
+\section{Random Module}
+
+The \texttt{random} module is used to generate random numbers and select random items from a collection.
+
+\begin{lstlisting}[language=Python]
+import random
+
+# Generate a random integer between 1 and 10
+print(random.randint(1, 10))
+
+# Select a random item from a list
+choices = ['apple', 'banana', 'cherry']
+print(random.choice(choices))
+\end{lstlisting}
+
+\section{OS Module}
+
+The \texttt{os} module provides functions to interact with the operating system, including file and directory operations.
+
+\begin{lstlisting}[language=Python]
+import os
+
+# Get current working directory
+print(os.getcwd())
+
+# Create a new directory
+os.mkdir('test_dir')
+\end{lstlisting}
+
+\section{Shutil Module}
+
+The \texttt{shutil} module performs high-level file operations such as copying files.
+
+\begin{lstlisting}[language=Python]
+import shutil
+
+# Copy source.txt to destination.txt
+shutil.copy('source.txt', 'destination.txt')
+\end{lstlisting}
+
+\section{JSON Module}
+
+The \texttt{json} module enables serialization (converting a dictionary to JSON) and deserialization (converting JSON to a dictionary).
+
+\begin{lstlisting}[language=Python]
+import json
+
+data = {'name': 'John', 'age': 25}
+
+# Serialize dictionary to JSON string
+json_str = json.dumps(data)
+print(json_str, type(json_str))
+
+# Deserialize JSON string back to dictionary
+parsed_data = json.loads(json_str)
+print(parsed_data, type(parsed_data))
+\end{lstlisting}
+
+\section{CSV Module}
+
+The \texttt{csv} module allows reading from and writing to CSV files.
+
+\begin{lstlisting}[language=Python]
+import csv
+
+# Writing to CSV
+with open('example.csv', 'w', newline='') as file:
+    writer = csv.writer(file)
+    writer.writerow(['name', 'age'])
+    writer.writerow(['John', 32])
+
+# Reading from CSV
+with open('example.csv', 'r') as file:
+    reader = csv.reader(file)
+    for row in reader:
+        print(row)
+\end{lstlisting}
+
+\section{Datetime Module}
+
+The \texttt{datetime} module provides classes to manipulate dates and times.
+
+\begin{lstlisting}[language=Python]
+from datetime import datetime, timedelta
+
+now = datetime.now()
+print("Current time:", now)
+
+# Calculate time one day ago
+yesterday = now - timedelta(days=1)
+print("Yesterday:", yesterday)
+\end{lstlisting}
+
+\section{Time Module}
+
+The \texttt{time} module allows controlling execution flow, such as pausing the program.
+
+\begin{lstlisting}[language=Python]
+import time
+
+print(time.time())
+time.sleep(2)  # Pause execution for 2 seconds
+print(time.time())
+\end{lstlisting}
+
+\section{Regular Expression Module}
+
+The \texttt{re} module provides tools for pattern matching in strings.
+
+\begin{lstlisting}[language=Python]
+import re
+
+pattern = r'\d+'
+text = "There are 123 apples"
+
+match = re.search(pattern, text)
+print(match.group())  # Output: 123
+\end{lstlisting}
+
+\section{Summary}
+
+The Python standard library contains numerous modules for a variety of tasks. Commonly used modules include:
+
+\begin{itemize}
+    \item \texttt{array}
+    \item \texttt{math}
+    \item \texttt{random}
+    \item \texttt{os}
+    \item \texttt{shutil}
+    \item \texttt{json}
+    \item \texttt{csv}
+    \item \texttt{datetime}
+    \item \texttt{time}
+    \item \texttt{re}
+\end{itemize}
+
+These modules facilitate common programming operations, reduce development effort, and enhance code readability. Exploring the standard library enables efficient implementation of complex functionalities without relying on external libraries.
+
+\chapter{File Operations in Python}
+
+Python provides robust support for handling both text and binary files. This chapter discusses various file operations including reading, writing, appending, and working with file cursors.
+
+\section{Reading a File}
+
+Python provides the \texttt{open} function to access files. By default, files are opened in read mode (\texttt{'r'}). The \texttt{with} statement ensures proper closure of files.
+
+\subsection{Reading the Entire File}
+
+\begin{lstlisting}[language=Python]
+with open('example.txt', 'r') as file:
+    content = file.read()
+    print(content)
+\end{lstlisting}
+
+\textbf{Explanation:} The \texttt{read()} method reads the entire content of the file. If the file does not exist, Python will raise a \texttt{FileNotFoundError}.  
+
+\subsection{Reading Line by Line}
+
+\begin{lstlisting}[language=Python]
+with open('example.txt', 'r') as file:
+    for line in file:
+        print(line.strip())
+\end{lstlisting}
+
+\textbf{Explanation:} Iterating over the file object reads one line at a time. The \texttt{strip()} method removes newline characters for cleaner output.
+
+\section{Writing to a File}
+
+Files can be opened in write mode (\texttt{'w'}) to overwrite existing content, or append mode (\texttt{'a'}) to add content at the end.
+
+\subsection{Overwriting a File}
+
+\begin{lstlisting}[language=Python]
+with open('example.txt', 'w') as file:
+    file.write("Hello World\n")
+    file.write("This is a new line\n")
+\end{lstlisting}
+
+\textbf{Explanation:} Opening a file in write mode (\texttt{'w'}) erases existing content. Each \texttt{write()} call adds content to the file.
+
+\subsection{Appending to a File}
+
+\begin{lstlisting}[language=Python]
+with open('example.txt', 'a') as file:
+    file.write("Appending this line\n")
+\end{lstlisting}
+
+\textbf{Explanation:} Append mode (\texttt{'a'}) adds new content at the end without deleting existing data. The newline character \texttt{'\textbackslash n'} ensures proper line separation.
+
+\subsection{Writing Multiple Lines}
+
+\begin{lstlisting}[language=Python]
+lines = ["First line\n", "Second line\n", "Third line\n"]
+with open('example.txt', 'a') as file:
+    file.writelines(lines)
+\end{lstlisting}
+
+\textbf{Explanation:} \texttt{writelines()} writes a list of strings to the file sequentially.
+
+\section{Binary File Operations}
+
+Binary files store data in bytes. Python provides modes \texttt{'wb'} and \texttt{'rb'} for writing and reading binary files.
+
+\subsection{Writing to a Binary File}
+
+\begin{lstlisting}[language=Python]
+with open('example.bin', 'wb') as file:
+    file.write(b"Hello World in bytes")
+\end{lstlisting}
+
+\subsection{Reading from a Binary File}
+
+\begin{lstlisting}[language=Python]
+with open('example.bin', 'rb') as file:
+    content = file.read()
+    print(content)
+\end{lstlisting}
+
+\section{Copying File Content}
+
+It is possible to read from a source file and write to a destination file.
+
+\begin{lstlisting}[language=Python]
+with open('example.txt', 'r') as src, open('destination.txt', 'w') as dst:
+    content = src.read()
+    dst.write(content)
+\end{lstlisting}
+
+\section{Reading, Writing, and Using File Cursor}
+
+Python provides the \texttt{w+} mode to simultaneously read and write a file. The \texttt{seek()} method resets the file cursor for reading after writing.
+
+\begin{lstlisting}[language=Python]
+with open('example.txt', 'w+') as file:
+    file.write("Hello World\n")
+    file.write("This is a new line\n")
+    
+    # Move cursor to the beginning
+    file.seek(0)
+    
+    # Read content after writing
+    content = file.read()
+    print(content)
+\end{lstlisting}
+
+\textbf{Explanation:} When writing to a file in \texttt{w+} mode, the cursor moves to the end. Using \texttt{seek(0)} resets it to the beginning, allowing the content to be read.
+
+\section{Practical Assignments}
+
+\begin{enumerate}
+    \item Read a text file and count the number of lines, words, and characters.
+    \item Copy content from a source text file to a destination text file.
+    \item Write and read a file multiple times using \texttt{w+} mode and \texttt{seek()} to manipulate the file cursor.
+\end{enumerate}
+
+\section{Summary}
+
+Python provides powerful and flexible file handling mechanisms for both text and binary files. Key operations include:
+
+\begin{itemize}
+    \item \texttt{open()} with modes: \texttt{r, w, a, r+, w+, rb, wb}
+    \item Reading entire file or line by line
+    \item Writing, appending, and writing multiple lines
+    \item Using \texttt{seek()} to manipulate file cursor
+    \item Handling binary files using byte operations
+\end{itemize}
+
+Mastering these operations is essential for file manipulation tasks in Python programming.
+
+\chapter{Working with Directories and File Paths in Python}
+
+Python's \texttt{os} module provides functionality to interact with the operating system, allowing users to create directories, list files, manipulate paths, and check file or directory existence. This chapter discusses these features with practical examples.
+
+\section{Creating a New Directory}
+
+A new directory can be created using the \texttt{os.mkdir()} function.
+
+\begin{lstlisting}[language=Python]
+import os
+
+new_directory = 'package'
+os.mkdir(new_directory)
+print(f"Directory {new_directory} created")
+\end{lstlisting}
+
+\textbf{Explanation:} The above code creates a folder named \texttt{package} in the current working directory and confirms creation with a message.
+
+\section{Listing Files and Directories}
+
+To list all files and directories within a folder, use the \texttt{os.listdir()} method.
+
+\begin{lstlisting}[language=Python]
+items = os.listdir('.')
+print(items)
+\end{lstlisting}
+
+\textbf{Explanation:} The dot (\texttt{.}) refers to the current working directory. This function returns all files and subdirectories in the specified folder.
+
+\section{Joining Paths}
+
+Hardcoding paths can create compatibility issues across different operating systems. Python provides \texttt{os.path.join()} to build system-independent paths.
+
+\begin{lstlisting}[language=Python]
+directory_name = 'folder'
+file_name = 'file.txt'
+
+full_path = os.path.join(directory_name, file_name)
+print(full_path)
+
+absolute_path = os.path.join(os.getcwd(), directory_name, file_name)
+print(absolute_path)
+\end{lstlisting}
+
+\textbf{Explanation:} \texttt{os.path.join()} constructs a relative or absolute path using the current working directory (\texttt{os.getcwd()}) and folder/file names.
+
+\section{Checking Path Existence}
+
+Before performing file operations, it is essential to verify if a file or directory exists.
+
+\begin{lstlisting}[language=Python]
+path = 'example1.txt'
+
+if os.path.exists(path):
+    print(f"The path {path} exists")
+else:
+    print(f"The path {path} does not exist")
+\end{lstlisting}
+
+\textbf{Explanation:} \texttt{os.path.exists()} returns \texttt{True} if the specified path exists; otherwise, it returns \texttt{False}.
+
+\section{Checking File or Directory Type}
+
+Python provides methods to determine whether a path is a file or a directory.
+
+\begin{lstlisting}[language=Python]
+path = 'example.txt'
+
+if os.path.isfile(path):
+    print(f"The path {path} is a file")
+elif os.path.isdir(path):
+    print(f"The path {path} is a directory")
+else:
+    print(f"{path} is neither a file nor a directory")
+\end{lstlisting}
+
+\textbf{Explanation:} Use \texttt{os.path.isfile()} and \texttt{os.path.isdir()} to differentiate between files and folders.
+
+\section{Relative vs. Absolute Paths}
+
+A relative path specifies a location relative to the current working directory, whereas an absolute path provides the full path from the root directory.
+
+\begin{lstlisting}[language=Python]
+relative_path = 'folder/example.txt'
+absolute_path = os.path.abspath(relative_path)
+print(absolute_path)
+\end{lstlisting}
+
+\textbf{Explanation:} \texttt{os.path.abspath()} converts a relative path to an absolute path, which can be used reliably in file operations across different systems.
+
+\section{Practical Notes}
+
+\begin{itemize}
+    \item Always check whether a file or directory exists before performing operations to avoid errors.
+    \item Use \texttt{os.path.join()} to maintain compatibility across operating systems.
+    \item \texttt{os} module functions like \texttt{mkdir()}, \texttt{listdir()}, \texttt{path.exists()}, \texttt{isfile()}, and \texttt{isdir()} are essential for end-to-end projects involving multiple files and directories.
+\end{itemize}
+
+\section{Summary}
+
+The \texttt{os} module provides essential utilities to manage directories and file paths in Python. Key operations include:
+
+\begin{itemize}
+    \item Creating directories with \texttt{os.mkdir()}
+    \item Listing files and directories with \texttt{os.listdir()}
+    \item Joining paths using \texttt{os.path.join()}
+    \item Checking existence with \texttt{os.path.exists()}
+    \item Identifying file or directory type with \texttt{os.path.isfile()} and \texttt{os.path.isdir()}
+    \item Converting relative paths to absolute paths using \texttt{os.path.abspath()}
+\end{itemize}
+
+Mastering these operations is crucial for robust file and directory management in Python-based projects.
+
+\chapter{Exception Handling in Python}
+
+Exception handling in Python allows programmers to manage errors gracefully and take corrective actions without stopping the execution of a program. This chapter introduces the key concepts of exceptions and demonstrates how to handle them using \texttt{try}, \texttt{except}, \texttt{else}, and \texttt{finally} blocks.
+
+\section{Introduction to Exceptions}
+
+Exceptions are events that disrupt the normal flow of a program. They occur when an error is encountered during execution. Unlike syntax errors, exceptions are detected while the program is running. Common examples include:
+
+\begin{itemize}
+    \item \texttt{ZeroDivisionError} — division by zero.
+    \item \texttt{FileNotFoundError} — file does not exist.
+    \item \texttt{ValueError} — invalid value for an operation.
+    \item \texttt{TypeError} — incorrect data type.
+    \item \texttt{NameError} — variable is not defined.
+\end{itemize}
+
+\section{Basic \texttt{try-except} Block}
+
+The \texttt{try} block contains code that may raise an exception. If an exception occurs, it is caught by the \texttt{except} block.
+
+\begin{lstlisting}[language=Python]
+try:
+    a = b
+except NameError:
+    print("The variable has not been assigned.")
+\end{lstlisting}
+
+\textbf{Explanation:} Here, \texttt{b} is not defined. The \texttt{NameError} exception is caught, and a user-friendly message is displayed instead of stopping the program.
+
+\section{Handling Exception Objects}
+
+You can capture the exception object to display more details:
+
+\begin{lstlisting}[language=Python]
+try:
+    a = b
+except NameError as e:
+    print(f"Exception occurred: {e}")
+\end{lstlisting}
+
+This prints the actual exception message: \texttt{NameError: name 'b' is not defined}.
+
+\section{Handling Multiple Exceptions}
+
+Different exceptions can be handled using multiple \texttt{except} blocks:
+
+\begin{lstlisting}[language=Python]
+try:
+    result = 10 / num
+except ValueError:
+    print("Not a valid number.")
+except ZeroDivisionError:
+    print("Enter a denominator greater than zero.")
+except Exception as e:
+    print(f"An unexpected error occurred: {e}")
+\end{lstlisting}
+
+\textbf{Explanation:}  
+\begin{itemize}
+    \item \texttt{ValueError} handles invalid input values.
+    \item \texttt{ZeroDivisionError} handles division by zero.
+    \item \texttt{Exception} is the base class for all exceptions and catches any other errors.
+\end{itemize}
+
+\section{Using the \texttt{else} and \texttt{finally} Blocks}
+
+Python's exception handling allows graceful management of runtime errors. In addition to \texttt{try} and \texttt{except} blocks, Python provides \texttt{else} and \texttt{finally} for more control.
+
+\subsection{The \texttt{else} Block}
+
+The \texttt{else} block executes only if no exception occurs in the \texttt{try} block. It is useful for code that should run after successful execution.
+
+\begin{lstlisting}[language=Python]
+try:
+    num = int(input("Enter a number: "))
+    result = 10 / num
+except ValueError:
+    print("Not a valid number.")
+except ZeroDivisionError:
+    print("Enter a denominator greater than zero.")
+else:
+    print(f"The result is {result}")
+\end{lstlisting}
+
+\textbf{Explanation:}  
+\begin{itemize}
+    \item Executes only if the user inputs a valid number.
+    \item Skipped if any exception occurs.
+\end{itemize}
+
+\subsection{The \texttt{finally} Block}
+
+The \texttt{finally} block executes regardless of whether an exception occurs. It is commonly used to release resources such as files or database connections.
+
+\begin{lstlisting}[language=Python]
+try:
+    num = int(input("Enter a number: "))
+    result = 10 / num
+except ZeroDivisionError:
+    print("You can't divide by zero.")
+except ValueError:
+    print("Not a valid number.")
+else:
+    print(f"The result is {result}")
+finally:
+    print("Execution complete.")
+\end{lstlisting}
+
+\textbf{Explanation:}  
+\begin{itemize}
+    \item \texttt{else} runs only if no exception occurs.
+    \item \texttt{finally} runs regardless of exceptions, making it ideal for cleanup tasks.
+\end{itemize}
+
+\subsection{Practical Example: File Handling}
+
+\begin{lstlisting}[language=Python]
+try:
+    file = open("example_one.txt", "r")
+    content = file.read()
+    print(content)
+except FileNotFoundError:
+    print("The file does not exist.")
+except Exception as e:
+    print(f"An error occurred: {e}")
+finally:
+    if 'file' in locals() and not file.closed:
+        file.close()
+        print("File closed.")
+\end{lstlisting}
+
+\textbf{Explanation:}  
+\begin{itemize}
+    \item Handles missing files gracefully with \texttt{FileNotFoundError}.
+    \item Catches unexpected errors using the base \texttt{Exception} class.
+    \item Ensures the file is always closed with \texttt{finally}.
+\end{itemize}
+
+\section{Key Takeaways}
+
+\begin{itemize}
+    \item Use \texttt{except} to catch specific exceptions.
+    \item Use \texttt{else} for code that should run if no exceptions occur.
+    \item Use \texttt{finally} for cleanup tasks that must execute regardless of exceptions.
+    \item Combine \texttt{try}, \texttt{except}, \texttt{else}, and \texttt{finally} for robust, user-friendly code.
+\end{itemize}
+
+\textbf{Conclusion:}  
+Mastering \texttt{try-except-else-finally} blocks ensures that Python programs handle errors gracefully, maintain resource integrity, and provide clear, user-friendly feedback.
+
+\chapter{Object-Oriented Programming in Python: Classes and Objects}
+
+\section{Introduction to Object-Oriented Programming}
+
+Object-Oriented Programming (OOP) is a programming paradigm that uses objects to design applications and computer programs. Python allows us to model real-world scenarios using classes and objects, which increases code reusability and efficiency. By understanding OOP concepts, we can develop real-world use cases effectively.
+
+\section{Classes and Objects}
+
+A \textbf{class} is a blueprint for creating objects. It contains attributes (properties) and methods (functions) that define the behavior and characteristics of the object. 
+
+\subsection{Basic Example: Car Class}
+
+We can define a class in Python using the \texttt{class} keyword:
+
+\begin{lstlisting}[language=Python]
+class Car:
+    pass
+\end{lstlisting}
+
+Here, \texttt{Car} is a class. We can now create objects (instances) from this class:
+
+\begin{lstlisting}[language=Python]
+# Creating objects
+audi = Car()
+bmw = Car()
+
+print(type(audi))  # Output: <class '__main__.Car'>
+print(type(bmw))   # Output: <class '__main__.Car'>
+\end{lstlisting}
+
+Each object represents a specific instance of the class. For example, \texttt{audi} and \texttt{bmw} are different cars, but they share the same blueprint provided by the \texttt{Car} class.
+
+\section{Attributes and Methods}
+
+\subsection{Instance Variables}
+
+Attributes represent the properties of a class. We can define them for objects as follows:
+
+\begin{lstlisting}[language=Python]
+audi.windows = 4
+tata = Car()
+tata.doors = 4
+\end{lstlisting}
+
+However, this approach is not recommended because attributes may not be consistent across objects. Instead, we use a constructor method to initialize attributes.
+
+\subsection{Constructor: \_\_init\_\_ Method}
+
+The \texttt{\_\_init\_\_} method is called a constructor and is used to initialize attributes when an object is created. It uses the \texttt{self} keyword to refer to the current instance.
+
+\begin{lstlisting}[language=Python]
+class Dog:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+\end{lstlisting}
+
+\texttt{name} and \texttt{age} are instance variables initialized during object creation:
+
+\begin{lstlisting}[language=Python]
+dog1 = Dog("Buddy", 3)
+dog2 = Dog("Lucy", 4)
+
+print(dog1.name, dog1.age)  # Output: Buddy 3
+print(dog2.name, dog2.age)  # Output: Lucy 4
+\end{lstlisting}
+
+\subsection{Instance Methods}
+
+Methods define the behavior of objects. An instance method can access instance variables using \texttt{self}:
+
+\begin{lstlisting}[language=Python]
+class Dog:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def bark(self):
+        print(f"{self.name} says Woof")
+\end{lstlisting}
+
+We can now call methods on specific objects:
+
+\begin{lstlisting}[language=Python]
+dog1.bark()  # Output: Buddy says Woof
+dog2.bark()  # Output: Lucy says Woof
+\end{lstlisting}
+
+Each object uses the same method but behaves according to its own attributes.
+
+\section{Example: Bank Account}
+
+Let's create a practical example of modeling a bank account using classes.
+
+\subsection{Class Definition}
+
+\begin{lstlisting}[language=Python]
+class BankAccount:
+    def __init__(self, owner, balance=0):
+        self.owner = owner
+        self.balance = balance
+
+    def deposit(self, amount):
+        self.balance += amount
+        print(f"{amount} is deposited. New balance: {self.balance}")
+
+    def withdraw(self, amount):
+        if amount > self.balance:
+            print("Insufficient funds")
+        else:
+            self.balance -= amount
+            print(f"{amount} is withdrawn. New balance: {self.balance}")
+
+    def get_balance(self):
+        return self.balance
+\end{lstlisting}
+
+\subsection{Creating Objects and Using Methods}
+
+\begin{lstlisting}[language=Python]
+# Creating a bank account for Crush
+account = BankAccount("Crush", 5000)
+
+# Depositing money
+account.deposit(100)    # Output: 100 is deposited. New balance: 5100
+
+# Withdrawing money
+account.withdraw(300)   # Output: 300 is withdrawn. New balance: 4800
+
+# Checking balance
+print(account.get_balance())  # Output: 4800
+\end{lstlisting}
+
+\section{Conclusion}
+
+Object-Oriented Programming in Python allows us to model real-world scenarios using classes and objects. In this chapter, you have learned how to:
+
+\begin{itemize}
+    \item Create classes and objects
+    \item Define and use instance variables (attributes)
+    \item Define and use instance methods
+    \item Apply these concepts in a real-world example of a bank account
+\end{itemize}
+
+Understanding OOP is essential for writing reusable, maintainable, and scalable Python applications. 
+
+
+\chapter{Inheritance in Python: Single and Multiple Inheritance}
+
+\section{Introduction}
+
+Inheritance is a fundamental concept in object-oriented programming (OOP) that allows a class to inherit attributes and methods from another class. This promotes code reuse and models real-world scenarios, such as inheriting property from parents.
+
+In this chapter, we will discuss how to implement **single inheritance** and **multiple inheritance** in Python, with practical examples.
+
+\section{Single Inheritance}
+
+\subsection{Parent Class Example: Car}
+
+We define a parent class \texttt{Car} with attributes \texttt{windows}, \texttt{doors}, and \texttt{engine\_type}, along with an instance method \texttt{drive}.
+
+\begin{lstlisting}[language=Python]
+class Car:
+    def __init__(self, windows, doors, engine_type):
+        self.windows = windows
+        self.doors = doors
+        self.engine_type = engine_type
+
+    def drive(self):
+        print(f"The person will drive the {self.engine_type} car")
+
+# Create an object of Car
+car1 = Car(4, 5, "petrol")
+car1.drive()
+\end{lstlisting}
+
+\subsection{Child Class Example: Tesla}
+
+The \texttt{Tesla} class inherits from \texttt{Car} and adds a new attribute \texttt{is\_self\_driving} along with a method to show this feature.
+
+\begin{lstlisting}[language=Python]
+class Tesla(Car):
+    def __init__(self, windows, doors, engine_type, is_self_driving):
+        super().__init__(windows, doors, engine_type)
+        self.is_self_driving = is_self_driving
+
+    def self_driving_info(self):
+        print(f"Tesla supports self-driving: {self.is_self_driving}")
+
+# Create an object of Tesla
+tesla1 = Tesla(4, 5, "electric", True)
+tesla1.drive()  # inherited from Car
+tesla1.self_driving_info()  # Tesla specific method
+\end{lstlisting}
+
+\section{Multiple Inheritance}
+
+Multiple inheritance occurs when a class inherits from more than one base class.
+
+\subsection{Base Classes Example: Animal and Pet}
+
+\begin{lstlisting}[language=Python]
+class Animal:
+    def __init__(self, name):
+        self.name = name
+
+    def speak(self):
+        print("Subclasses must implement this method")
+
+class Pet:
+    def __init__(self, owner):
+        self.owner = owner
+\end{lstlisting}
+
+\subsection{Derived Class Example: Dog}
+
+\begin{lstlisting}[language=Python]
+class Dog(Animal, Pet):
+    def __init__(self, name, owner):
+        Animal.__init__(self, name)
+        Pet.__init__(self, owner)
+
+    def speak(self):
+        return f"{self.name} says woof"
+
+# Create object of Dog
+dog = Dog("Buddy", "Crush")
+print(dog.speak())   # Output: Buddy says woof
+print(dog.owner)     # Output: Crush
+\end{lstlisting}
+
+\section{Conclusion}
+
+\begin{itemize}
+    \item \textbf{Single inheritance} allows a child class to inherit attributes and methods from a single parent class.
+    \item \textbf{Multiple inheritance} allows a child class to inherit from multiple parent classes.
+    \item Use of the \texttt{super()} function or direct parent class calls helps initialize inherited attributes.
+    \item Inheritance is useful for code reuse and modeling real-world relationships in Python.
+\end{itemize}
+
+
+\chapter{Polymorphism in Python}
+
+Polymorphism is a fundamental concept in object-oriented programming that allows objects of different classes to be treated as objects of a common superclass. It provides a mechanism to perform a single action in multiple forms, enhancing code flexibility and maintainability. The term "polymorphism" literally means "many forms."
+
+\section{Method Overriding}
+
+Method overriding enables a child class to provide a specific implementation of a method that is already defined in its parent class. This allows derived classes to modify or extend the behavior of the base class.
+
+\subsection{Example: Animal Sounds}
+
+\begin{lstlisting}[language=Python, caption=Method Overriding with Animals]
+class Animal:
+    def speak(self):
+        return "Sound of the animal"
+
+class Dog(Animal):
+    def speak(self):
+        return "Woof"
+
+class Cat(Animal):
+    def speak(self):
+        return "Meow"
+
+dog = Dog()
+cat = Cat()
+
+print(dog.speak())  # Output: Woof
+print(cat.speak())  # Output: Meow
+\end{lstlisting}
+
+In this example, the method \texttt{speak} is overridden in each child class, allowing \texttt{Dog} and \texttt{Cat} to produce distinct outputs.
+
+\section{Polymorphism with Functions}
+
+Polymorphism can also be demonstrated using functions that operate on objects of different types in a uniform manner. This approach allows the same function to process various object types, each implementing the required interface or method.
+
+\subsection{Example: Shapes and Areas}
+
+\begin{lstlisting}[language=Python, caption=Polymorphism with Shape Classes]
+class Shape:
+    def area(self):
+        pass
+
+class Rectangle(Shape):
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+    def area(self):
+        return self.width * self.height
+
+class Circle(Shape):
+    def __init__(self, radius):
+        self.radius = radius
+    def area(self):
+        return 3.14 * self.radius * self.radius
+
+def print_area(shape):
+    print(f"The area is: {shape.area()}")
+
+rect = Rectangle(4, 5)
+circle = Circle(3)
+
+print_area(rect)    # Output: The area is: 20
+print_area(circle)  # Output: The area is: 28.26
+\end{lstlisting}
+
+The function \texttt{print\_area} illustrates polymorphism by invoking the \texttt{area} method on objects of different classes.
+
+\section{Polymorphism with Abstract Base Classes}
+
+In Python, interfaces are implemented through \textit{abstract base classes} (ABCs). An abstract base class defines a common interface for a group of related objects and enforces that derived classes implement the required methods. This ensures consistency across multiple implementations.
+
+\subsection{Example: Vehicles}
+
+\begin{lstlisting}[language=Python, caption=Polymorphism using Abstract Base Classes]
+from abc import ABC, abstractmethod
+
+class Vehicle(ABC):
+    @abstractmethod
+    def start_engine(self):
+        pass
+
+class Car(Vehicle):
+    def start_engine(self):
+        return "Car engine started"
+
+class Motorcycle(Vehicle):
+    def start_engine(self):
+        return "Motorcycle engine started"
+
+car = Car()
+motorcycle = Motorcycle()
+
+print(car.start_engine())        # Output: Car engine started
+print(motorcycle.start_engine()) # Output: Motorcycle engine started
+\end{lstlisting}
+
+This example demonstrates how abstract base classes enforce method implementation, while still supporting polymorphic behavior across multiple derived classes.
+
+\section{Conclusion}
+
+Polymorphism is an essential feature of object-oriented programming. It allows a single function or method to handle objects from different classes, each implementing the required method in its own way. By leveraging polymorphism, developers can write flexible, extensible, and maintainable code that accommodates future changes and extensions without requiring modifications to existing logic.
+
+\chapter{Encapsulation in Python}
+
+Encapsulation is a core concept in object-oriented programming that helps in designing maintainable and reusable code. It refers to the practice of bundling data (variables) and methods that operate on that data into a single unit (a class) and restricting direct access to some components of an object. This prevents accidental modification or misuse of the data.
+
+\section{Access Modifiers in Python}
+
+Python supports three main types of access modifiers:
+
+\begin{itemize}
+    \item \textbf{Public:} Variables and methods accessible from anywhere in the program.
+    \item \textbf{Protected:} Variables and methods prefixed with a single underscore (`\_`) that should only be accessed within the class and its subclasses.
+    \item \textbf{Private:} Variables and methods prefixed with double underscores (`\_\_`) that are intended to be hidden from outside the class.
+\end{itemize}
+
+\section{Public Variables}
+
+Public instance variables can be accessed directly using the object.
+
+\begin{lstlisting}[language=Python, caption=Public Variables Example]
+class Person:
+    def __init__(self, name, age):
+        self.name = name  # Public variable
+        self.age = age    # Public variable
+
+person = Person("Chris", 34)
+print(person.name)  # Output: Chris
+print(person.age)   # Output: 34
+\end{lstlisting}
+
+\section{Private Variables}
+
+Private variables are not accessible directly outside the class. They are defined with double underscores (`\_\_`) and are intended to be hidden.
+
+\begin{lstlisting}[language=Python, caption=Private Variables Example]
+class Person:
+    def __init__(self, name, age):
+        self.__name = name  # Private variable
+        self.__age = age    # Private variable
+
+person = Person("Chris", 34)
+# print(person.__name)  # This would raise an AttributeError
+\end{lstlisting}
+
+\section{Protected Variables}
+
+Protected variables, prefixed with a single underscore (`\_`), can be accessed in subclasses but are conventionally not accessed directly from outside the class.
+
+\begin{lstlisting}[language=Python, caption=Protected Variables Example]
+class Person:
+    def __init__(self, name):
+        self._name = name  # Protected variable
+
+class Employee(Person):
+    def display_name(self):
+        return self._name
+
+employee = Employee("Chris")
+print(employee.display_name())  # Output: Chris
+\end{lstlisting}
+
+\section{Getter and Setter Methods}
+
+To access or modify private variables safely, Python uses getter and setter methods. These allow controlled access to private attributes and can enforce constraints.
+
+\begin{lstlisting}[language=Python, caption=Encapsulation Using Getter and Setter]
+class Person:
+    def __init__(self, name, age):
+        self.__name = name
+        self.__age = age
+
+    # Getter methods
+    def get_name(self):
+        return self.__name
+    
+    def get_age(self):
+        return self.__age
+    
+    # Setter methods
+    def set_name(self, name):
+        self.__name = name
+    
+    def set_age(self, age):
+        if age > 0:
+            self.__age = age
+        else:
+            print("Age cannot be negative")
+
+# Example usage
+person = Person("Chris", 34)
+print(person.get_name())  # Output: Chris
+print(person.get_age())   # Output: 34
+
+person.set_age(35)
+print(person.get_age())   # Output: 35
+
+person.set_age(-5)        # Output: Age cannot be negative
+\end{lstlisting}
+
+\section{Conclusion}
+
+Encapsulation in Python is achieved using access modifiers (public, protected, private) and getter/setter methods.  
+
+\begin{itemize}
+    \item \textbf{Public variables:} Accessible from anywhere.
+    \item \textbf{Protected variables:} Accessible within the class and subclasses.
+    \item \textbf{Private variables:} Restricted to the class itself, accessed only through getter/setter methods.
+\end{itemize}
+
+This approach hides internal implementation details while exposing only the necessary interface, leading to safer and more maintainable code. Abstraction, which will be discussed in the next chapter, builds upon encapsulation to further simplify complex systems.
+
+\chapter{Abstraction in Python}
+
+Abstraction is a fundamental concept in object-oriented programming (OOP). It involves hiding complex implementation details while exposing only the essential features of an object. This reduces programming complexity and enhances maintainability.
+
+\section{Real-World Examples of Abstraction}
+
+\begin{itemize}
+    \item \textbf{Washing Machine:} Users interact with buttons to start, stop, or set a timer, while the internal washing process remains hidden.
+    \item \textbf{Mobile Phones or Laptops:} Users see icons, buttons, or menus for operations like shutting down or opening applications, but the underlying implementation is concealed.
+    \item \textbf{AC Remote:} The remote exposes essential controls, while the internal circuitry and logic remain hidden.
+\end{itemize}
+
+\section{Abstract Classes in Python}
+
+Python provides the \texttt{abc} module to implement abstraction. An abstract class serves as a blueprint for derived classes and can contain both normal and abstract methods. Abstract methods define a required interface but contain no implementation.
+
+\begin{lstlisting}[language=Python, caption=Abstract Class and Method Example]
+from abc import ABC, abstractmethod
+
+# Abstract base class
+class Vehicle(ABC):
+    
+    def drive(self):
+        print("The vehicle is used for driving")  # Normal method
+    
+    @abstractmethod
+    def start_engine(self):
+        pass  # Abstract method to be implemented by subclasses
+\end{lstlisting}
+
+\section{Implementing Abstract Methods in Child Classes}
+
+Derived classes must implement all abstract methods from the abstract base class. This ensures the necessary features are exposed, while complex implementation details are handled internally.
+
+\begin{lstlisting}[language=Python, caption=Derived Class Implementing Abstract Method]
+class Car(Vehicle):
+    
+    def start_engine(self):
+        print("Car engine started")  # Implementation of abstract method
+
+# Example usage
+def operate_vehicle(vehicle):
+    vehicle.start_engine()
+
+car = Car()
+operate_vehicle(car)  # Output: Car engine started
+car.drive()           # Output: The vehicle is used for driving
+\end{lstlisting}
+
+\section{Key Points}
+
+\begin{itemize}
+    \item Abstraction hides the internal workings of an object and exposes only the required interface.
+    \item Abstract classes are defined by inheriting from \texttt{ABC}.
+    \item Abstract methods must be implemented by derived classes, allowing flexibility in how functionality is realized.
+    \item Normal methods in abstract classes can still provide shared functionality accessible by all derived classes.
+\end{itemize}
+
+\section{Conclusion}
+
+Abstraction simplifies interaction with objects by presenting only the necessary features and hiding the internal complexities. It improves code maintainability, reusability, and reduces cognitive load for developers. Python supports abstraction through abstract base classes and abstract methods.
+
+
+\chapter{Magic Methods in Python}
+
+In our previous discussions, we have covered many concepts in object-oriented programming (OOP), including function and method overriding, encapsulation, and abstraction. In this chapter, we will explore \textbf{magic methods} in Python.
+
+\section{Introduction to Magic Methods}
+
+Magic methods, also known as \emph{dunder methods} (double underscore methods), are special methods that begin and end with double underscores. They allow you to define the behavior of objects for built-in operations such as arithmetic, comparison, and string representation.
+
+Some common magic methods include:
+
+\begin{itemize}
+    \item \texttt{\_\_init\_\_} -- Constructor, initializes a new instance of a class.
+    \item \texttt{\_\_str\_\_} -- Returns a human-readable string representation of the object.
+    \item \texttt{\_\_repr\_\_} -- Returns an official string representation of the object, useful for debugging.
+\end{itemize}
+
+\section{Basic Example of Magic Methods}
+
+\begin{lstlisting}[language=Python, caption=Defining a Class with Magic Methods]
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+\end{lstlisting}
+
+Creating an object of this class:
+
+\begin{lstlisting}[language=Python]
+person = Person("John", 34)
+print(person)  # Default output: <__main__.Person object at 0x...>
+\end{lstlisting}
+
+By default, printing the object displays its memory address. To customize this, we override the \texttt{\_\_str\_\_} method.
+
+\section{Overriding \_\_str\_\_ Method}
+
+\begin{lstlisting}[language=Python]
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def __str__(self):
+        return f"{self.name}, {self.age} years old"
+
+person = Person("John", 34)
+print(person)  # Output: John, 34 years old
+\end{lstlisting}
+
+\section{Overriding \_\_repr\_\_ Method}
+
+The \texttt{\_\_repr\_\_} method provides an \emph{official} string representation of an object, often used for debugging:
+
+\begin{lstlisting}[language=Python]
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def __repr__(self):
+        return f"Person(name={self.name}, age={self.age})"
+
+person = Person("John", 34)
+print(repr(person))  # Output: Person(name=John, age=34)
+\end{lstlisting}
+
+\section{Key Points}
+
+\begin{itemize}
+    \item Magic methods define how objects behave with built-in operations.
+    \item Overriding magic methods allows you to customize object behavior.
+    \item Common magic methods include \texttt{\_\_init\_\_}, \texttt{\_\_str\_\_}, \texttt{\_\_repr\_\_}, \texttt{\_\_add\_\_}, \texttt{\_\_eq\_\_}, and many more.
+    \item You can explore additional magic methods to implement operator overloading or other custom behaviors.
+\end{itemize}
+
+\section{Conclusion}
+
+Magic methods provide a powerful way to define object behavior for built-in operations. By overriding these methods, you can make your objects more intuitive, readable, and functional. In the next chapter, we will explore \textbf{operator overloading}, which builds upon magic methods to customize arithmetic and comparison operations.
+
+\chapter{Operator Overloading in Python}
+
+In our previous discussion, we explored \textbf{magic methods}. In this chapter, we will learn how to use these methods to perform \textbf{operator overloading}.
+
+\section{Introduction}
+
+Operator overloading allows you to define custom behavior for Python's built-in operators (such as \texttt{+}, \texttt{-}, \texttt{*}, \texttt{==}, etc.) for your own objects. This is done by overriding specific magic methods.
+
+\begin{itemize}
+    \item \texttt{\_\_add\_\_} for addition (\texttt{+})
+    \item \texttt{\_\_sub\_\_} for subtraction (\texttt{-})
+    \item \texttt{\_\_mul\_\_} for multiplication (\texttt{*})
+    \item \texttt{\_\_truediv\_\_} for division (\texttt{/})
+    \item \texttt{\_\_eq\_\_} for equality comparison (\texttt{==})
+    \item \texttt{\_\_lt\_\_} for less than (\texttt{<})
+    \item \texttt{\_\_gt\_\_} for greater than (\texttt{>})
+\end{itemize}
+
+\section{Example: Vector Class}
+
+We can overload operators for a simple 2D vector class.
+
+\begin{lstlisting}[language=Python, caption=Vector Class with Operator Overloading]
+class Vector:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    # Addition
+    def __add__(self, other):
+        return Vector(self.x + other.x, self.y + other.y)
+
+    # Subtraction
+    def __sub__(self, other):
+        return Vector(self.x - other.x, self.y - other.y)
+
+    # Multiplication (by scalar)
+    def __mul__(self, other):
+        return Vector(self.x * other, self.y * other)
+
+    # Equality check
+    def __eq__(self, other):
+        return self.x == other.x and self.y == other.y
+
+    # String representation
+    def __repr__(self):
+        return f"Vector(x={self.x}, y={self.y})"
+
+# Create vector objects
+v1 = Vector(2, 3)
+v2 = Vector(4, 5)
+
+# Operator overloading in action
+print(v1 + v2)  # Vector(x=6, y=8)
+print(v1 - v2)  # Vector(x=-2, y=-2)
+print(v1 * 3)   # Vector(x=6, y=9)
+print(v1 == v2) # False
+\end{lstlisting}
+
+\section{Explanation}
+
+\begin{itemize}
+    \item \texttt{v1 + v2} calls \texttt{v1.\_\_add\_\_(v2)} and returns a new vector with summed coordinates.
+    \item \texttt{v1 - v2} calls \texttt{v1.\_\_sub\_\_(v2)}.
+    \item \texttt{v1 * 3} calls \texttt{v1.\_\_mul\_\_(3)} for scalar multiplication.
+    \item \texttt{v1 == v2} calls \texttt{v1.\_\_eq\_\_(v2)} and returns a boolean.
+    \item \texttt{\_\_repr\_\_} provides a human-readable representation for debugging and printing.
+\end{itemize}
+
+\section{Key Points}
+
+\begin{itemize}
+    \item Operator overloading is achieved by overriding magic methods.
+    \item You can overload arithmetic, comparison, and other operators for custom classes.
+    \item This is particularly useful for mathematical objects like vectors, matrices, and complex numbers.
+    \item Proper implementation of these methods ensures your objects behave intuitively.
+\end{itemize}
+
+\section{Conclusion}
+
+Magic methods and operator overloading are powerful features in Python. They allow you to define custom behaviors for standard operators, making your objects more expressive and easier to use in application development. You can apply this to vectors, matrices, complex numbers, or any custom data structures.
+
+\chapter{Creating Web Applications with Streamlit}
+
+In this chapter, we will learn how to create interactive web applications using \textbf{Streamlit}, an open-source framework for machine learning and data science projects. Streamlit allows you to build beautiful web apps using only Python scripts, without needing HTML or CSS knowledge.
+
+\section{Introduction to Streamlit}
+
+Streamlit is widely used in data science and AI projects, including creating interactive dashboards and generative AI chatbots. Its key features include:
+
+\begin{itemize}
+    \item Easy Python integration
+    \item Pre-built widgets (text input, sliders, select boxes, etc.)
+    \item Charts and tables support
+    \item Rapid prototyping for ML and data projects
+\end{itemize}
+
+\section{Getting Started}
+
+\subsection{Installation}
+
+Install the required packages using:
+
+\begin{lstlisting}[language=bash]
+pip install -r requirements.txt
+\end{lstlisting}
+
+\subsection{Basic App Setup}
+
+Create a Python file, e.g., \texttt{app.py}, and import Streamlit:
+
+\begin{lstlisting}[language=Python]
+import streamlit as st
+import pandas as pd
+import numpy as np
+
+# Title of the app
+st.title("Hello Streamlit")
+
+# Display a simple text
+st.write("This is a simple text.")
+
+# Display a DataFrame
+df = pd.DataFrame({
+    "Column 1": [1, 2, 3],
+    "Column 2": [4, 5, 6]
+})
+st.write("Here is the DataFrame:")
+st.write(df)
+
+# Create a line chart
+chart_data = pd.DataFrame(
+    np.random.randn(20, 3),
+    columns=['A', 'B', 'C']
+)
+st.line_chart(chart_data)
+\end{lstlisting}
+
+Run the app with:
+
+\begin{lstlisting}[language=bash]
+streamlit run app.py
+\end{lstlisting}
+
+The app will open in your browser at \texttt{localhost:8501}.
+
+\section{Interactive Widgets}
+
+Streamlit provides several widgets for user interaction. Examples:
+
+\subsection{Text Input}
+
+\begin{lstlisting}[language=Python]
+name = st.text_input("Enter your name:")
+
+if name:
+    st.write(f"Hello {name}!")
+\end{lstlisting}
+
+\subsection{Slider}
+
+\begin{lstlisting}[language=Python]
+age = st.slider("Select your age:", 0, 100, 25)
+st.write(f"Your age is: {age}")
+\end{lstlisting}
+
+\subsection{Select Box}
+
+\begin{lstlisting}[language=Python]
+options = ["Python", "Java", "C", "C++", "JavaScript"]
+choice = st.selectbox("Choose your favorite programming language:", options)
+st.write(f"Your choice is: {choice}")
+\end{lstlisting}
+
+\subsection{File Uploader}
+
+\begin{lstlisting}[language=Python]
+uploaded_file = st.file_uploader("Choose a CSV file", type="csv")
+
+if uploaded_file is not None:
+    df = pd.read_csv(uploaded_file)
+    st.write(df)
+\end{lstlisting}
+
+\section{Conclusion}
+
+Streamlit allows rapid development of interactive web apps for data science and machine learning projects. Key points:
+
+\begin{itemize}
+    \item No need for HTML/CSS knowledge
+    \item Easy to display data, charts, and widgets
+    \item Ideal for POCs and interactive dashboards
+    \item Supports machine learning project deployment
+\end{itemize}
+
+In the next chapter, we will demonstrate an end-to-end machine learning application built using Streamlit, showcasing how to make ML models interactive and accessible via a web app.
+
+\chapter{Building a Machine Learning Web App with Streamlit}
+
+In this chapter, we demonstrate how to create an interactive machine learning application using \textbf{Streamlit}. This example uses the classic Iris dataset and a Random Forest classifier to showcase predictions in real-time.
+
+\section{Introduction}
+
+Streamlit allows developers to create interactive web apps for data science and machine learning without needing HTML or CSS. By combining sliders, input fields, and charts, users can interact with models directly from the browser.
+
+\section{Project Setup}
+
+\subsection{Installing Dependencies}
+
+Install the required packages using:
+
+\begin{lstlisting}[language=bash]
+pip install -r requirements.txt
+\end{lstlisting}
+
+Ensure the environment includes \texttt{streamlit}, \texttt{pandas}, \texttt{numpy}, and \texttt{scikit-learn}.
+
+\subsection{Importing Libraries}
+
+\begin{lstlisting}[language=Python]
+import streamlit as st
+import pandas as pd
+import numpy as np
+from sklearn.datasets import load_iris
+from sklearn.ensemble import RandomForestClassifier
+\end{lstlisting}
+
+\section{Loading and Caching the Dataset}
+
+We define a function to load the Iris dataset and convert it into a pandas DataFrame. Using the \texttt{@st.cache\_data} decorator ensures that the dataset is cached and not reloaded every time the app runs.
+
+\begin{lstlisting}[language=Python]
+@st.cache_data
+def load_data():
+    iris = load_iris()
+    df = pd.DataFrame(iris.data, columns=iris.feature_names)
+    df['species'] = iris.target
+    return df, iris.target_names
+
+df, target_names = load_data()
+\end{lstlisting}
+
+\section{Training the Random Forest Model}
+
+\begin{lstlisting}[language=Python]
+model = RandomForestClassifier()
+X = df.iloc[:, :-1]  # Independent features
+y = df['species']    # Dependent feature
+model.fit(X, y)
+\end{lstlisting}
+
+\section{Creating Interactive Sliders for Input}
+
+We use Streamlit sliders to allow users to input sepal length, sepal width, petal length, and petal width interactively:
+
+\begin{lstlisting}[language=Python]
+sepal_length = st.slider("Sepal Length", float(df.iloc[:,0].min()), float(df.iloc[:,0].max()))
+sepal_width  = st.slider("Sepal Width", float(df.iloc[:,1].min()), float(df.iloc[:,1].max()))
+petal_length = st.slider("Petal Length", float(df.iloc[:,2].min()), float(df.iloc[:,2].max()))
+petal_width  = st.slider("Petal Width", float(df.iloc[:,3].min()), float(df.iloc[:,3].max()))
+\end{lstlisting}
+
+\section{Making Predictions}
+
+The app collects the slider inputs into a list and predicts the Iris species using the trained model:
+
+\begin{lstlisting}[language=Python]
+input_data = [[sepal_length, sepal_width, petal_length, petal_width]]
+prediction = model.predict(input_data)
+predicted_species = target_names[prediction[0]]
+st.write(f"Predicted Iris Species: {predicted_species}")
+\end{lstlisting}
+
+\section{Running the App}
+
+Run the Streamlit app using:
+
+\begin{lstlisting}[language=bash]
+streamlit run classification.py
+\end{lstlisting}
+
+The app opens in the browser, displaying sliders for feature input and the predicted Iris species in real-time.
+
+\section{Conclusion}
+
+This example demonstrates the power of Streamlit for creating interactive machine learning applications:
+
+\begin{itemize}
+    \item Users can interactively adjust input features using sliders.
+    \item Predictions from the machine learning model are updated instantly.
+    \item Minimal code is required for front-end display; no HTML or CSS is necessary.
+    \item Streamlit caching ensures efficient loading of datasets.
+\end{itemize}
+
+In the next chapter, we will explore more advanced interactive components and integrate additional visualizations into a machine learning web app.

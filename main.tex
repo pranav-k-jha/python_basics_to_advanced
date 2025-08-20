@@ -1,0 +1,174 @@
+% filepath: /Users/pranav/Downloads/Software-Development/os-course/genai-course.tex
+\documentclass[12pt, oneside]{book}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{lipsum}
+\usepackage{tcolorbox}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{lmodern} % better font
+\usepackage{titlesec} % customize headings
+\usepackage{enumitem} % better lists
+\usepackage{fancyhdr} % headers and footers
+\usepackage{tikz} % for design elements
+\usepackage{mdframed} % alternative for notes
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+
+% -------------------------
+% Colors
+% -------------------------
+\definecolor{codebg}{RGB}{245,245,250}      % very light gray background
+\definecolor{codeframe}{RGB}{150,150,180}   % soft purple frame
+\definecolor{codekeyword}{RGB}{75,0,130}    % deep purple keywords
+\definecolor{codestring}{RGB}{163,21,21}    % dark red strings
+\definecolor{codecomment}{RGB}{0,128,0}     % green comments
+
+% -------------------------
+% Listings style
+% -------------------------
+
+\lstdefinestyle{custombash}{
+    backgroundcolor=\color{codebg},
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{codekeyword}\bfseries,
+    stringstyle=\color{codestring},
+    commentstyle=\color{codecomment}\itshape,
+    showstringspaces=false,
+    breaklines=true,
+    frame=single,
+    framerule=0.8pt,
+    rulecolor=\color{codeframe},
+    xleftmargin=3mm,
+    xrightmargin=3mm,
+    aboveskip=1em,
+    belowskip=1em,
+    columns=flexible,
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    numbersep=5pt,
+    captionpos=b
+}
+
+% -------------------------
+% Language aliases
+% -------------------------
+\lstdefinelanguage{bash}{
+    morekeywords={cd,ls,mkdir,rm,conda,pip,python,source,deactivate,activate},
+    sensitive=true,
+    morecomment=[l]{\#},
+    morestring=[b]",
+}
+
+% -------------------------
+% Apply globally
+% -------------------------
+\lstset{style=custombash}
+
+% Page layout
+\geometry{a4paper, margin=1in}
+% Colors
+\definecolor{genAIBlue}{RGB}{36, 92, 180}
+
+% Hyperref setup for blue TOC links
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,    % Table of Contents links
+    urlcolor=blue      % URLs
+}
+
+% Heading formatting
+\titleformat{\chapter}[hang]{\Huge\bfseries\color{genAIBlue}}{\thechapter}{1em}{}
+\titleformat{\section}[hang]{\LARGE\bfseries\color{genAIBlue}}{\thesection}{1em}{}
+\titleformat{\subsection}[hang]{\large\bfseries\color{genAIBlue}}{\thesubsection}{1em}{}
+
+% Header/footer
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Python Fundamentals: Basics to Advanced}
+\fancyhead[R]{\thepage}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Custom environment for important notes
+\newtcolorbox{noteBox}{
+  colback=genAIBlue!10!white, 
+  colframe=genAIBlue, 
+  boxrule=0.5mm, 
+  arc=3mm, 
+  left=3mm, 
+  right=3mm,
+  title=Note
+}
+
+% List customization
+\setlist[itemize]{left=2em, itemsep=0.5em}
+
+% Document metadata
+\title{\Huge\bfseries Generative AI from Scratch}
+\author{\Large Based on lectures by [Instructor Name] \\ \Large Compiled by Pranav}
+\date{\today}
+
+\begin{document}
+\begin{titlepage}
+\begin{tikzpicture}[remember picture, overlay]
+    % Full-page gradient background
+    \shade[top color=genAIBlue!90!black, bottom color=genAIBlue!40!white] 
+        (current page.south west) rectangle (current page.north east);
+
+    % Decorative diagonal stripes
+    \foreach \x in {-2,-1,...,20}{
+        \fill[white, opacity=0.02, rotate around={45:(\x,0)}] 
+            (\x,-5) rectangle (\x+0.5,25);
+    }
+\end{tikzpicture}
+
+% Centered content
+\vspace*{4cm}
+\begin{center}
+    % Title
+{\Huge\bfseries\textcolor{white}{Master Python: From Basics to Advanced}\par}
+
+\vspace{0.5cm}
+% Subtitle bar
+\begin{tcolorbox}[
+    colback=white!10!blue,
+    colframe=white,
+    boxrule=0.3mm,
+    arc=2mm,
+    width=0.8\textwidth,
+    halign=center
+]
+    \Large\textcolor{white}{Learn, Build, and Deploy Real-World Python Applications}
+\end{tcolorbox}
+
+
+    \vspace{1.5cm}
+
+    % Author/Instructor info
+    {\Large\textcolor{white}{By Pranav Jha}\par}
+
+    \vfill
+
+    % Bottom logo / date
+    % \includegraphics[width=3cm]{example-image} % Replace with your logo if available
+    \vspace{0.5cm}
+
+    {\large\textcolor{white}{\today}\par}
+\end{center}
+\end{titlepage}
+
+% \maketitle
+\tableofcontents
+\newpage
+\include{chapter1}
+\include{chapter2}
+\include{chapter3}
+
+\end{document}
